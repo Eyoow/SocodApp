@@ -29,6 +29,12 @@ app.get("/api/user/:id", function(req,res){
     .then(user => res.json(user))
     .catch(err => res.json(err));
 });
+// finding a user by username. also used to check for existing username.
+app.get("/api/user_name/:user_name", function(req,res){
+    db.User.findOne({user_name: req.params.user_name})
+    .then(() => res.json({"taken":"true"}))
+    .catch(() => res.json({"taken":"false"}));
+});
 
 app.get("/api/trips", function(req,res){
     db.Trip.find({})
@@ -49,23 +55,47 @@ app.get("/api/messages/:id", function(req,res){
     .catch(err => res.json(err));
 });
 
+app.post("/api/messages", function(req,res){
+    db.Message.create(req.body)
+    .then(messages => res.json(messages))
+    .catch(err => res.json(err));
+});
 app.post("/api/user", function(req,res){
-    let user = req.body.user.toString();
+    let user = req.body;
     console.log(user);
-
-    db.User.findOneAndUpdate({_id: user},{_id: user}, {upsert: true})
+    if(user._id){
+        db.User.findOneAndUpdate({_id: user._id},{_id: user._id}, {upsert: true})
     .then(user => res.json(user))
     .catch(err => res.json(err));
+    }
+
+   else{ db.User.create(user)
+    .then(user => res.json(user))
+    .catch(err => res.json(err));}
 });
 
 
 app.post("/api/trips", function(req,res){
-    let trip = req.body.trip.toString();
+    let trip = req.body;
     console.log(trip);
+   if(trip._id)
+    {
+        
+        if(trip.riders.length<trip.max_riders){
 
-    db.Trip.findOneAndUpdate({_id: trip},{_id: trip}, {upsert: true})
+        
+        db.Trip.findOneAndUpdate({_id: trip},{_id: trip}, {upsert: true})
     .then(trip => res.json(trip))
-    .catch(err => res.json(err));
+    .catch(err => res.json(err));}
+
+    else{
+        res.text("ride is full");
+    }
+}
+else{
+    db.Trip.create(trip)
+    .then(trip => res.json(trip))
+    .catch(err => res.json(err));}
 });
 
 
@@ -89,7 +119,9 @@ app.delete("/api/trips/:id", function(req,res){
 });
 
 //THIS CODE IS FOR CONNECTIONG TO DB//
-mongoose.connect(MONGODB_URI).then().catch(err => console.log(err));
+mongoose.connect(MONGODB_URI).then( 
+    // () => {db.User.remove({},err => console.log(err))}
+).catch(err => console.log(err));
 
 app.listen(PORT, function(){
 

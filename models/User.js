@@ -2,10 +2,11 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-    _id:{
+    user_name:{
         type: String, 
         required: true
     },
+    
     name:{
         type: String, 
         required: true
@@ -20,6 +21,10 @@ var UserSchema = new Schema({
     },
 
     birthdate:{
+        type: String, 
+        required: true
+    },
+    email:{
         type: String, 
         required: true
     },

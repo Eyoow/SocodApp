@@ -1,0 +1,82 @@
+/* global styling  */
+
+body{
+    background-color:#f20f80;
+}
+
+/* register form style  */
+input, label {
+    margin-left: 10px;
+    line-height: 31px;
+    display: block;
+    font-family: sans-serif;
+    border-radius: 5px;
+    
+}
+input{
+    width: 180px;
+    border: 1px solid #600130;
+    background-color: #fbb9da;
+    padding-left: 100px;
+    border-radius: 5px;
+    color: #9d9197;
+
+}
+label{
+    color: #f20f80;
+    width: 80px;
+    font-size: 10pt;
+    background-color:#600130; 
+    padding-left: 10px;
+    position: relative;
+    top:34px;
+    height: 33px;
+    border-radius: 5px 0 0 5px; 
+}
+label.check{
+    /* margin-top: 15px; */
+    margin-bottom:-34px; 
+}
+
+input[type~="checkbox"]{
+    height: 33px;
+    position: relative;
+   /* left: 17px; */
+    /* border: 1px solid #600130; */
+    top:35px;
+    margin-bottom: -2px;
+    opacity: 0;
+    width:200px;
+
+}
+input[type~="submit"]{
+    margin-top: 34px;
+    margin-bottom: 34px;
+    color: #f20f80;
+    width: 90px;
+    font-size: 10pt;
+    background-color:#600130; 
+    padding-left: 0;
+   
+   
+
+}
+form div{
+    
+    color: #600130;
+    width: 31px;
+    font-size: 10pt;
+    padding-left: 0;
+    height: 31px;
+    border: 1px solid #600130;
+    background-color: #fbb9da;
+    position: relative;
+    top:1px;
+    left: 99px;
+}
+#isdriver:checked ~ #driver{
+    background-color: yellow;
+}
+#isrider:checked ~ #rider{
+    background-color: yellow;
+}

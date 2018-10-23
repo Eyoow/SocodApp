@@ -2,11 +2,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var TripSchema = new Schema({
-    _id:{
-        type: String, 
-        required: true
-    },
-    
+ 
     stops:[{
         type: Number, 
         required: true
@@ -24,6 +20,12 @@ var TripSchema = new Schema({
         type: Date, 
         required: true
     }],
+    
+    
+    max_riders:{
+        type: Number, 
+        required: true
+    },
     
     riders:[{
         type: Schema.Types.ObjectId, 

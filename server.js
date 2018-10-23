@@ -118,6 +118,11 @@ app.delete("/api/trips/:id", function(req,res){
     .catch(err => res.json(err));
 });
 
+// frontend routes
+app.get("/register",function(req,res){
+    res.sendFile(path.join(__dirname,"register.html"));
+});
+
 //THIS CODE IS FOR CONNECTIONG TO DB//
 mongoose.connect(MONGODB_URI).then( 
     // () => {db.User.remove({},err => console.log(err))}

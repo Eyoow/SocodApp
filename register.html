@@ -5,25 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>EDIT PROFILE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="static/css/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
     
 </head>
 <body> 
-    <form id= "register"> 
+    <form id= "register" action="api/user" method="post"> 
         <label for = "name">Name:</label>
         <input type = "text" required name ="name" placeholder="firstname lastname"/>
 
         <label for = "user_name">User name:</label>
         <input type = "text" required name ="user_name" placeholder="socodlover"/>    
-
+        <button>check availability</button>
         <label for = "street_address">Address:</label>
         <input type = "text" required name ="street_address" placeholder="123 main st"/>
       
         <label for = "zipcode">Zipcode:</label>
         <input type = "number" required name ="zipcode" placeholder="12345"/>
 
-        <label for = "birthday">Birthday:</label>
-        <input type = "date" required name ="birthday" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="mm/dd/yyyy"/>
+        <label for = "birthdate">Birthday:</label>
+        <input type = "date" required name ="birthdate" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="mm/dd/yyyy"/>
 
         <label for = "password">Password:</label>
         <input type = "password" required name ="password" placeholder="muhamadisthebest"/>
@@ -41,7 +41,7 @@
         <label class = "check" for = "isdriver">I am a driver.</label>
         <input id = "isdriver" type = "checkbox" name = "isdriver" value="true"/> 
         <div id="driver"></div>
-        <input type = "submit"/>
+        <input id = "submitButton" type = "submit"/>
 
     </form>
     
@@ -50,5 +50,5 @@
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
-<script src= "static/js/form.js"></script>
+<script src= "js/form.js"></script>
 </html>

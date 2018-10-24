@@ -23,6 +23,9 @@ if(process.env.NODE_ENV === "production"){
     app.use(express.static("client/build"));
 
 }
+else{
+    app.use(express.static(__dirname+"/static"));
+}
 
 app.get("/api/user/:id", function(req,res){
     db.User.findOne({_id: req.params.id})
@@ -32,8 +35,15 @@ app.get("/api/user/:id", function(req,res){
 // finding a user by username. also used to check for existing username.
 app.get("/api/user_name/:user_name", function(req,res){
     db.User.findOne({user_name: req.params.user_name})
-    .then(() => res.json({"taken":"true"}))
-    .catch(() => res.json({"taken":"false"}));
+    .then(() =>{ 
+        if(res.body){
+            res.json({"taken":"true"});
+        }
+        else{
+            res.json({"taken":"false"});
+        }
+    })
+    .catch(err => res.json(err));
 });
 
 app.get("/api/trips", function(req,res){

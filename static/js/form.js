@@ -1,17 +1,25 @@
 $(document).ready(function()
 
-{   $("#register").on("submit", function (event){
+
+{  
+
+    
+    $("button").on("click", function (event){
   event.preventDefault();
   event.stopPropagation();
-  var form = $(this);
+ var user_name = $("input[name='user_name']").val();
+   
 
-    $.get("/api/user_name/"+ form.user_name,(res)=>{
-        if(res.taken){
+    $.get("/api/user_name/"+ user_name,(res)=>{
+       
+
+        if(res.taken =="true"){
             alert("user name is taken");
-            break;
+        
         }
         else{
-            $.post("/api/user", form,(res)=> alert("user profile created"));
+            alert("user name is available");
+            // $.post("/api/user", form,(res)=> alert("user profile created"));
         }
     });
 });

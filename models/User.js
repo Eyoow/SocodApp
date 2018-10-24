@@ -38,12 +38,12 @@ var UserSchema = new Schema({
     },
     isrider:{
         type: Boolean, 
-        required: true
+        default: false
     },
 
     isdriver:{
         type: Boolean, 
-        required: true
+        default: false
     }
 });
 

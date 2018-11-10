@@ -167,18 +167,18 @@ app.delete("/api/trips/:id", function(req,res){
     .catch(err => res.json(err));
 });
 
-// frontend routes
-app.get("/register",function(req,res){
-    res.sendFile(path.join(__dirname,"register.html"));
-});
+// // frontend routes
+// app.get("/register",function(req,res){
+//     res.sendFile(path.join(__dirname,"register.html"));
+// });
 
-app.get("/findTrip",function(req,res){
-    res.sendFile(path.join(__dirname,"findTrip.html"));
-});
+// app.get("/findTrip",function(req,res){
+//     res.sendFile(path.join(__dirname,"findTrip.html"));
+// });
 
-app.get("/trips",function(req,res){
-    res.sendFile(path.join(__dirname,"trips.html"));
-});
+// app.get("/trips",function(req,res){
+//     res.sendFile(path.join(__dirname,"trips.html"));
+// });
 
 
 //THIS CODE IS FOR CONNECTIONG TO DB//

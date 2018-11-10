@@ -44,6 +44,11 @@ var UserSchema = new Schema({
     isdriver:{
         type: Boolean, 
         default: false
+    },
+
+    gender:{
+        type: String,
+        required: true
     }
 });
 

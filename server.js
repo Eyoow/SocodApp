@@ -2,15 +2,54 @@ const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
+const session = require("express-session");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+var passport = require("passport");
+var LocalStrategy =require("passport-local").Strategy;
 const mongoose = require("mongoose");
 require("dotenv").config();
+
+
+// user Authentication
+passport.use(new LocalStrategy(function(username, password,done){
+    db.User.findOne({user_name:username},function(err,user){
+        if(err){
+            return done(err);
+        }
+        if(!user){
+            return done(null, false, {message:"incorrect user name"});
+        }
+        if(!user.validPassword(password)){
+            return done(null, false, {message:"incorrect password"});
+        }
+        return done(null, user);
+
+    });
+  }
+));
+
+passport.serializeUser(function(user,done){
+    done(null, user._id);
+    
+});
+
+passport.deserializeUser(function(user,done){
+    db.User.findById(id,function(err,user){
+        done(err, user);
+    });
+    
+});
+
 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
+app.use(session({secret:"star"}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 
 
@@ -132,6 +171,15 @@ app.delete("/api/trips/:id", function(req,res){
 app.get("/register",function(req,res){
     res.sendFile(path.join(__dirname,"register.html"));
 });
+
+app.get("/findTrip",function(req,res){
+    res.sendFile(path.join(__dirname,"findTrip.html"));
+});
+
+app.get("/trips",function(req,res){
+    res.sendFile(path.join(__dirname,"trips.html"));
+});
+
 
 //THIS CODE IS FOR CONNECTIONG TO DB//
 mongoose.connect(MONGODB_URI).then( 

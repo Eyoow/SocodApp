@@ -28,9 +28,9 @@ export const makeMainRoutes = () => {
         <Route exact path="/register" render={(props) => {
           handleAuthentication(props);
           return <Register {...props} auth={auth}/>} }/>
-        <Route exact path="/trips" render={(props) => {
+        {/* <Route exact path="/trips" render={(props) => {
           handleAuthentication(props);
-          return <Trips {...props} auth={auth}/>} }/>
+          return <Trips {...props} auth={auth}/>} }/> */}
       </div>
     </Router>
   );

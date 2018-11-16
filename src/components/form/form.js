@@ -7,9 +7,9 @@ const Form = props => {
     return (
         <form id={props.id} action={props.action} method={props.method}>
             {
-                props.fields.map(field =>{
+                props.fields.map((field,index) =>{
                     return (
-                        <Input name={field.name} isRequired={field.required} type={field.type} placeholder={field.placeholder} />
+                        <Input name={field.name} key={index} isRequired={field.required} type={field.type} placeholder={field.placeholder} label={field.label} />
                     );
                 })
             }

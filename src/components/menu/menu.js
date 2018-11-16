@@ -5,15 +5,20 @@ import "./menu.css";
 const Menu = props => {
     return(
         <div id = "menu" >
-           {
-           /* <Button label= "Register" onclick={()=>props.goTo("register")} />
-           <Button label="Log In" onclick={()=>props.goTo("login")} /> */
-               props.buttons.map((button) => {
-                    return (
-                        <Button label={button.label} onclick={button.onclick} />
-                    );
-                })
+           {props.auth.isAuthenticated()?(
+                <Button label = "Log out" onclick={props.auth.logout} />
+               ):
+               (
+                <Button label = "Log in" onclick={props.auth.login} />
+           )
            }
+           {props.buttons.map((button,index)=>{
+                   return(
+                       <Button {...button} key={index} />
+                   );
+               })
+            }
+           
         </div>
     );
 };

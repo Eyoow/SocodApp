@@ -1,0 +1,12 @@
+.inputGroup {
+    display: grid;
+    grid-template-columns: 80px 180px;
+}
+
+input{
+    grid-column-start: 2;
+}
+
+label{ 
+    grid-column-start:1;
+}

@@ -13,7 +13,7 @@ const Form = props => {
                     );
                 })
             }
-            <Button onclick={props.onclick} label={props.method} />
+            <Button onclick={props.onclick} label={props.buttonLabel} />
         </form>
     );
 };

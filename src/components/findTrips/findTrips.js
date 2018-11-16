@@ -1,14 +1,17 @@
 import React from "react";
-import Trip from "../trip";
+import Form from "../form";
+import fields from "./fields";
+import Trips from "../trips";
+import API from "../../utils/API";
 // import filterTrips from "./filterTrips.js";
 import "./findTrips.css";
 
 const FindTrips = props => {
     return(
-        props.trips.map(trip=>{
-            return <Trip {...trip} />;
-            }
-        )
+        
+        <Form {...props} {...fields} buttonLabel="Find Trips" onclick={()=>API.getTrips().then(trips =>{
+            return <Trips {...props} trips={trips} />
+        })} />      
     );
 
 };

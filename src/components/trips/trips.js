@@ -4,10 +4,14 @@ import "./Trips.css";
 
 const Trips = props => {
     return (
-        {props.trips.map((trip, index)=>{
+        
+            props.trips.map((trip, index)=>{
             return(
                 <Trip {...trip} key={index} {...props} />
-            )
-        }}
+            );
+            })
+    
     )
-}
+};
+
+export default Trips;

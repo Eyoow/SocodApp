@@ -28,6 +28,23 @@ export default {
   },
   //saves user, either creating or updating if already exists
   saveUser: (user) => {
+    console.log(user);
+    if(user.isrider === "on")
+    {
+        user.isrider = true;
+    }
+    else
+    {
+        user.isrider = false;
+    }
+    if(user.isdriver === "on")
+    {
+        user.isdriver = true;
+    }
+    else
+    {
+        user.isdriver = false;
+    }
     return instance.post("/api/user", user);
   },
    // Deletes the message based on message id, not the user id

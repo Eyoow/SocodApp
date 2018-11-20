@@ -6,11 +6,12 @@ const fields = [
     {type:"date", isRequired:true, name:"birthdate", placeholder:"mm/dd/yyyy", label:"Birthdate:"},
     {type:"radio", isRequired:false, name:"male", label:"M"},
     {type:"radio", isRequired:false, name:"female", label:"F"},
-    {type:"password", isRequired:true, name:"password", placeholder:"muhamadisthebest", label:"Password:"},
+    // {type:"password", isRequired:true, name:"password", placeholder:"muhamadisthebest", label:"Password:"},
     {type: "email", isRequired:true, name:"email", placeholder:"socod@gmail.com",label:"Email:"},
-    {type:"url", isRequired:true, name:"picture", placeholder:"http://mypic.com",label:"Picture:"},
+    // {type:"url", isRequired:true, name:"picture", placeholder:"http://mypic.com",label:"Picture:"},
     {type:"checkbox", isRequired:false, name:"isrider",label:"I am a rider"},
     {type:"checkbox", isRequired:false, name:"isdriver",label:"I am a driver"}
+    
     ];
 
 module.exports = fields;

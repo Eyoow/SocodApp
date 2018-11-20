@@ -5,14 +5,16 @@ import "./menu.css";
 const Menu = props => {
     return(
         <div id = "menu" >
-           {props.auth.isAuthenticated()?(
-                <Button label = "Log out" onclick={props.auth.logout} />
-               ):
-               (
-                <Button label = "Log in" onclick={props.auth.login} />
-           )
+           {
+                props.auth.isAuthenticated()?(
+                    <Button label = "Log out" onclick={props.auth.logout} />
+                ):
+                (
+                    <Button label = "Log in" onclick={props.auth.login} />
+                )
            }
-           {props.buttons.map((button,index)=>{
+           {
+               props.buttons.map((button,index)=>{
                    return(
                        <Button {...button} key={index} />
                    );

@@ -32,7 +32,7 @@ export const makeMainRoutes = () => {
               return (
                 <div className="container">
                   <div className="navbar">
-                    <Menu {...props} auth={auth} buttons={[{label:"Register", onclick:()=>history.replace("register")},{label:"Register", onclick:()=>history.replace("register")}]} />
+                    <Menu {...props} auth={auth} buttons={[{label:"Register", onclick:()=>history.replace("register")}]} />
                   </div>
                   <div className="content">
                     <Register {...props} auth={auth}/>
@@ -45,7 +45,7 @@ export const makeMainRoutes = () => {
           <Route exact path="/messages" render ={(props)=>{
             handleAuthentication(props);
               return (
-                <Messages {...props} />
+                <Messages {...props} auth={auth} />
               )
           }} />
         <Route exact path="/findTrips" render={(props) => {

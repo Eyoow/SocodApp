@@ -2,12 +2,14 @@ import React from 'react';
 import { Route, Router } from 'react-router-dom';
 import App from './App';
 import Callback from './Callback';
+import Jumbotron from "./components/jumbo";
 import Auth from './components/auth';
 import Menu from './components/menu';
 import Register from "./components/register";
 import FindTrips from "./components/findTrips";
 import Messages from "./components/messages";
 import history from './history';
+import MapContainer from "./components/mapContainer";
 
 const auth = new Auth();
 
@@ -27,12 +29,13 @@ export const makeMainRoutes = () => {
           handleAuthentication(props);
           return <Callback {...props} auth={auth}/>}
         }/>
-        <Route exact path="/register" render={(props) => {
+        <Route exact path="/signup" render={(props) => {
               handleAuthentication(props);
               return (
                 <div className="container">
+                  <Jumbotron {...props} auth={auth} />
                   <div className="navbar">
-                    <Menu {...props} auth={auth} buttons={[{label:"Register", onclick:()=>history.replace("register")}]} />
+                    <Menu {...props} auth={auth} buttons={[{label:"Sign Up!", onclick:()=>history.replace("signup")}]} />
                   </div>
                   <div className="content">
                     <Register {...props} auth={auth}/>
@@ -52,6 +55,11 @@ export const makeMainRoutes = () => {
           handleAuthentication(props);
           return <FindTrips {...props} auth={auth}/>} 
         }/>
+        <Route exact path ="/map" render={(props) =>{
+          handleAuthentication(props);
+          return <MapContainer {...props} API_KEY = {App.API_KEY} auth={auth}/>
+          }
+        } />
       </div>
     </Router>
   );

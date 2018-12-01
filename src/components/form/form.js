@@ -9,7 +9,7 @@ const Form = props => {
             {
                 props.fields.map((field,index) =>{
                     return (
-                        <Input name={field.name} key={index} isRequired={field.required} type={field.type} placeholder={field.placeholder} label={field.label} />
+                        <Input name={field.name} key={index} isRequired={field.required} type={field.type} placeholder={field.placeholder} value={field.value} label={field.label} />
                     );
                 })
             }

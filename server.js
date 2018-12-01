@@ -35,7 +35,7 @@ passport.serializeUser(function(user,done){
 });
 
 passport.deserializeUser(function(user,done){
-    db.User.findById(id,function(err,user){
+    db.User.findById(user._id,function(err,user){
         done(err, user);
     });
     
@@ -112,6 +112,14 @@ app.post("/api/messages", function(req,res){
 app.post("/api/user", function(req,res){
     let user = req.body;
     console.log(user);
+    if (user.male)
+    {
+        user.gender = "M";
+    }
+    else if(user.female)
+    {
+        user.gender = "F";
+    }
     if(user._id){
         db.User.findOneAndUpdate({_id: user._id},{_id: user._id}, {upsert: true})
     .then(user => res.json(user))

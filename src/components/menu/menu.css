@@ -1,0 +1,10 @@
+#menu .btn{
+    border-radius: 0;
+    border: none;
+}
+
+#menu{
+    width: 100%;
+    background-color: #53c01f;
+    margin-bottom: 31px;
+}

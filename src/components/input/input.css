@@ -1,12 +1,37 @@
-.inputGroup {
+.inputGroup{
     display: grid;
     grid-template-columns: 80px 180px;
+    
+}
+
+input, label {
+    box-sizing: border-box;
+    padding-left: 10px;
+    margin-left: 10px;
+    line-height: 31px;
+    display: block;
+    font-family: sans-serif;
+    border-radius: 5px;
 }
 
 input{
+    width: 100%;
     grid-column-start: 2;
-}
+    border: 1px solid #53c01f;
+    background-color: white;
+    border-radius: 0 5px 5px 0;
+    color: #9d9197;
 
-label{ 
-    grid-column-start:1;
+}
+label{
+    color: white;
+    width: 100%;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    font-size: 10pt;
+    background-color:#53c01f;
+    /* position: relative;
+    top:34px;
+    height: 33px; */
+    border-radius: 5px 0 0 5px; 
 }

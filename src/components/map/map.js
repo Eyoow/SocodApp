@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import MapControls from "../mapControls";
-import DirectionsPanel from "../directionsPanel";
+import Button from "../button";
+// import MapControls from "../mapControls";
+//import DirectionsPanel from "../directionsPanel";
 import "./map.css"
 
 // const Map = props =>{
@@ -84,15 +85,20 @@ import "./map.css"
 
 // 
 class Map extends React.Component {
+    
+  
+  
+ 
     loadMap() {
       if (this.props && this.props.google) {
         // google is available
         const {google} = this.props;
         const maps = google.maps;
-  
+        this.directionsDisplay = new google.maps.DirectionsRenderer();
+        this.directionsService = new google.maps.DirectionsService();
         const mapRef = this.refs.map;
         const node = ReactDOM.findDOMNode(mapRef);
-  
+        
         let zoom = 14;
         let lat = 37.774929;
         let lng = -122.419416;
@@ -102,9 +108,37 @@ class Map extends React.Component {
           zoom: zoom
         })
         this.map = new maps.Map(node, mapConfig);
+        this.directionsDisplay.setMap(this.map);
+        this.directionsDisplay.setPanel(document.getElementById('right-panel'));
+            
+        var control = document.getElementById('floating-panel');
+        control.style.display = 'block';
+        this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
       }
       // ...
     }
+    calculateAndDisplayRoute(directionsService, directionsDisplay) {
+        var start = document.getElementById('start').value;
+        var end = document.getElementById('end').value;
+        directionsService.route({
+          origin: start,
+          destination: end,
+          travelMode: 'DRIVING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            this.routeData = response;
+            console.log(response);
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+    }
+    
+    onChangeHandler(){
+      this.calculateAndDisplayRoute(this.directionsService, this.directionsDisplay);
+    }
+      
     componentDidMount() {
         this.loadMap();
       }
@@ -118,11 +152,21 @@ class Map extends React.Component {
     render() {
         return (
           <div id = "mapContainer">
-          <MapControls />
+          {/* <MapControls /> */}
+          
+          <div id="right-panel"></div>
+          <div id="floating-panel">
+            <input id="start" type="text" ></input>
+            <input id="end" type="text"></input>
+            <Button label="Find Route" onclick={() => this.onChangeHandler()} />
+          </div>
           <div ref='map' id="map">
+          
             Loading map...
           </div>
-          <DirectionsPanel hidden={this.props.hidden}/>
+          
+
+          {/* <DirectionsPanel hidden={this.props.hidden}/> */}
           </div>
         
         )

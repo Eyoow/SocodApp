@@ -4,6 +4,7 @@ import Button from "../button";
 import "./form.css";
 
 const Form = props => {
+    
     return (
         <form id={props.id} action={props.action} method={props.method}>
             {

@@ -7,9 +7,11 @@ import Auth from './components/auth';
 import Menu from './components/menu';
 import Register from "./components/register";
 import FindTrips from "./components/findTrips";
+import UserProfile from "./components/userProfile";
 import Messages from "./components/messages";
 import history from './history';
 import MapContainer from "./components/mapContainer";
+import API from './utils/API';
 
 const auth = new Auth();
 
@@ -55,8 +57,14 @@ export const makeMainRoutes = () => {
           handleAuthentication(props);
           return <FindTrips {...props} auth={auth}/>} 
         }/>
+         <Route exact path="/profile" render={(props) => {
+          handleAuthentication(props);
+          // API.getProfile({id:auth.user_id}).then(user =>{
+          return <UserProfile {...props} auth={auth} />} 
+        }/>
         <Route exact path ="/map" render={(props) =>{
           handleAuthentication(props);
+          
           return <MapContainer {...props} API_KEY = {App.API_KEY} auth={auth}/>
           }
         } />

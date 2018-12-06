@@ -1,5 +1,7 @@
 const express = require("express");
 const path = require("path");
+const jwt = require('express-jwt');
+const jwks = require('jwks-rsa');
 const PORT = process.env.PORT || 3001;
 const app = express();
 const session = require("express-session");
@@ -51,7 +53,19 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-
+const authCheck = jwt({
+  secret: jwks.expressJwtSecret({
+        cache: true,
+        rateLimit: true,
+        jwksRequestsPerMinute: 5,
+        // YOUR-AUTH0-DOMAIN name e.g prosper.auth0.com
+        jwksUri: `https://${process.env.AUTHO_DOMAIN}/.well-known/jwks.json`
+    }),
+    // This is the identifier we set when we created the /API
+    audience: '',
+    issuer: `${process.env.AUTHO_DOMAIN}`,
+    algorithms: ['RS256']
+});
 
 const db = require("./models");
 
@@ -66,13 +80,13 @@ else{
     app.use(express.static(__dirname+"/static"));
 }
 
-app.get("/api/user/:id", function(req,res){
+app.get("/api/user/:id", authCheck, function(req,res){
     db.User.findOne({_id: req.params.id})
     .then(user => res.json(user))
     .catch(err => res.json(err));
 });
 // finding a user by username. also used to check for existing username.
-app.get("/api/user_name/:user_name", function(req,res){
+app.get("/api/user_name/:user_name", authCheck,function(req,res){
     db.User.findOne({user_name: req.params.user_name})
     .then(() =>{ 
         if(res.body){
@@ -85,31 +99,31 @@ app.get("/api/user_name/:user_name", function(req,res){
     .catch(err => res.json(err));
 });
 
-app.get("/api/trips", function(req,res){
+app.get("/api/trips", authCheck, function(req,res){
     db.Trip.find({})
     .then(trips => res.json(trips))
     .catch(err => res.json(err));
 });
 
 
-app.get("/api/riders", function(req,res){
+app.get("/api/riders", authCheck, function(req,res){
     db.User.find({isrider: true})
     .then(riders => res.json(riders))
     .catch(err => res.json(err));
 });
 
-app.get("/api/messages/:id", function(req,res){
+app.get("/api/messages/:id", authCheck, function(req,res){
     db.Message.find({recipient: req.params.id})
     .then(messages => res.json(messages))
     .catch(err => res.json(err));
 });
 
-app.post("/api/messages", function(req,res){
+app.post("/api/messages", authCheck, function(req,res){
     db.Message.create(req.body)
     .then(messages => res.json(messages))
     .catch(err => res.json(err));
 });
-app.post("/api/user", function(req,res){
+app.post("/api/user", authCheck, function(req,res){
     let user = req.body;
     console.log(user);
     if (user.male)
@@ -120,19 +134,14 @@ app.post("/api/user", function(req,res){
     {
         user.gender = "F";
     }
-    if(user._id){
-        db.User.findOneAndUpdate({_id: user._id},{_id: user._id}, {upsert: true})
+    db.User.findOneAndUpdate({_id: authCheck.id},{_id: authCheck.id}, {upsert: true})
     .then(user => res.json(user))
     .catch(err => res.json(err));
-    }
-
-   else{ db.User.create(user)
-    .then(user => res.json(user))
-    .catch(err => res.json(err));}
+      
 });
 
 
-app.post("/api/trips", function(req,res){
+app.post("/api/trips", authCheck, function(req,res){
     let trip = req.body;
     console.log(trip);
    if(trip._id)
@@ -156,20 +165,20 @@ else{
 });
 
 
-app.delete("/api/messages/:id", function(req,res){
+app.delete("/api/messages/:id", authCheck, function(req,res){
     db.Message.remove({_id: req.params.id })
     .then(()=> res.send("success"))
     .catch(err => res.json(err));
 });
 
 
-app.delete("/api/user/:id", function(req,res){
+app.delete("/api/user/:id", authCheck, function(req,res){
     db.User.remove({_id: req.params.id })
     .then(()=> res.send("success"))
     .catch(err => res.json(err));
 });
 
-app.delete("/api/trips/:id", function(req,res){
+app.delete("/api/trips/:id", authCheck, function(req,res){
     db.Trip.remove({_id: req.params.id })
     .then(()=> res.send("success"))
     .catch(err => res.json(err));

@@ -59,8 +59,8 @@ export const makeMainRoutes = () => {
         }/>
          <Route exact path="/profile" render={(props) => {
           handleAuthentication(props);
-          // API.getProfile({id:auth.user_id}).then(user =>{
-          return <UserProfile {...props} auth={auth} />} 
+          return <UserProfile {...props} auth={auth}  />
+          }
         }/>
         <Route exact path ="/map" render={(props) =>{
           handleAuthentication(props);

@@ -8,8 +8,7 @@ class App extends Component {
     super(props);
   }
   
-    API_KEY =`${process.env.REACT_APP_API_KEY}`;
-
+    
     goTo(route) {
       this.props.history.replace(`/${route}`)
     }
@@ -24,7 +23,7 @@ class App extends Component {
   
     render() {
      return(
-				<Menu auth={this.props.auth}  API_KEY = {this.API_KEY} goTo={this.goTo} buttons={[{label:"Sign up!",onclick:()=>this.goTo("signup")}]} />
+				<Menu auth={this.props.auth} goTo={this.goTo} buttons={[{label:"Sign up!",onclick:()=>this.goTo("signup")}]} />
       );
     }
 }

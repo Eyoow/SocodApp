@@ -3,13 +3,14 @@ import Map from "../map";
 import GoogleApiComponent from "../../utils/GoogleApiComponent.js";
 
 class mapContainer extends React.Component {
-    
+    constructor(props){
+      super(props);
+    }
+
     render() {
      
       return (
-        <div>
-          <Map google={this.props.google} />
-        </div>
+        <Map google={this.props.google} />
       )
     }
 }

@@ -6,7 +6,7 @@ import "./form.css";
 const Form = props => {
     
     return (
-        <form id={props.id} action={props.action} method={props.method}>
+        <form name={props.name} id={props.id} action={props.action} onSubmit={props.onSubmit} method={props.method}>
             {
                 props.fields.map((field,index) =>{
                     return (
@@ -14,7 +14,7 @@ const Form = props => {
                     );
                 })
             }
-            <Button onclick={props.onclick} label={props.buttonLabel} />
+            <Input type="submit" />
         </form>
     );
 };

@@ -5,10 +5,7 @@ import "./userProfile.css";
 import API from "../../utils/API";
 
 const UserProfile = props =>{
-    props.auth.getProfile();
-    let auth_profile = localStorage.getItem('profile');
-    console.log(auth_profile);
-    let user = API.getProfile({id:auth_profile});
+    let user = API.getProfile({id:localStorage.getItem('profile')});
     const fields = [
         {type:"text", isRequired:false, name:"name", placeholder:user.name, label:"Name"},
         {type:"text", isRequired:false, name:"user_name", placeholder:user.user_name, label:"Username"},
@@ -20,8 +17,8 @@ const UserProfile = props =>{
         // {type:"password", isRequired:true, name:"password", placeholder:"muhamadisthebest", label:"Password:"},
         {type: "email", isRequired:false, name:"email", placeholder:user.email,label:"Email"},
         // {type:"url", isRequired:true, name:"picture", placeholder:"http://mypic.com",label:"Picture:"},
-        {type:"checkbox", isRequired:false, name:"isrider",value:"true",label:"Rider"},
-        {type:"checkbox", isRequired:false, name:"isdriver",value:"true",label:"Driver"}
+        {type:"checkbox", isRequired:false, name:"isrider",placeholder:user.isrider,value:"true",label:"Rider"},
+        {type:"checkbox", isRequired:false, name:"isdriver",placeholder:user.isdriver,value:"true",label:"Driver"}
         
         ];
 

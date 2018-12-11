@@ -1,6 +1,6 @@
 import React from "react";
 import RegistrationForm from "../registrationForm";
-import API from "../../utils/API";
+
 import "./register.css";
 
 const Register = props => {

@@ -10,8 +10,10 @@ import FindTrips from "./components/findTrips";
 import UserProfile from "./components/userProfile";
 import Messages from "./components/messages";
 import history from './history';
+import MapWithDirections from "./components/mapWithDirections";
 import MapContainer from "./components/mapContainer";
 import API from './utils/API';
+
 
 const auth = new Auth();
 
@@ -64,7 +66,7 @@ export const makeMainRoutes = () => {
         }/>
         <Route exact path ="/map" render={(props) =>{
           handleAuthentication(props);
-          
+          return <MapWithDirections {...props} API_KEY = {App.API_KEY} auth={auth}/>
           return <MapContainer {...props} API_KEY = {App.API_KEY} auth={auth}/>
           }
         } />

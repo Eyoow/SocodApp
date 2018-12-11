@@ -1,3 +1,10 @@
-#map{
+#map,#right-panel{
     height:100vh;
+}
+#map{
+    margin-right:400px;
+}
+#right-panel{
+    width:350px;
+    float: right;
 }

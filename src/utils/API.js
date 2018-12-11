@@ -16,6 +16,7 @@ export default {
   },
   //loads user profile
   getProfile:(id) => {
+    console.log(id);
     return instance.get(`/api/user/${id}`);
   },
   // 'Sends' a message 

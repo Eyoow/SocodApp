@@ -2,6 +2,10 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
+    _id:{
+        type:String,
+        required:true
+    },
     user_name:{
         type: String, 
         required: true
@@ -28,10 +32,6 @@ var UserSchema = new Schema({
         type: String, 
         required: true
     },
-    // password:{
-    //     type: String, 
-    //     required: true
-    // },
     // picture:{
     //     type: String, 
     //     required: true

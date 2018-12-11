@@ -5,7 +5,10 @@ import MapControl from "../mapControl";
 const {
   GoogleMap,
   DirectionsRenderer,
+  withGoogleMap
 } = require("react-google-maps");
+
+const google = window.google;
 
 class MapWithDirections extends Component{
 
@@ -51,4 +54,4 @@ class MapWithDirections extends Component{
   }
 }
 
-export default MapWithDirections;
+export default withGoogleMap(MapWithDirections);

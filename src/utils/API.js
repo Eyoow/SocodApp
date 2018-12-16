@@ -1,35 +1,38 @@
 import axios from "axios";
+
 var instance = axios.create({});
+var apiURL = process.env.API_URL || "http://localhost:3001";
+
 
 export default {
   // Gets all messages where user is either sender or recipient
   getMessages: (id) => {
-    return instance.get(`/api/messages/${id}`);
+    return instance.get(`${apiURL}/api/messages/${id}`);
   },
   // gets all trips
   getTrips: () =>{
-    return instance.get("/api/trips/");
+    return instance.get(`${apiURL}/api/trips/`);
   },
   //finds user by name
   findUserByName: (user_name) => {
-    return instance.get(`/api/user_name/${user_name}`);
+    return instance.get(`${apiURL}/api/user_name/${user_name}`);
   },
   //loads user profile
   getProfile:(id) => {
     
-    return instance.get(`/api/user/${id}`);
+    return instance.get(`${apiURL}/api/user/${id}`);
   },
   // 'Sends' a message 
   sendMessage: (message) =>{
-    return instance.post("/api/messages", message);
+    return instance.post(`${apiURL}/api/messages`, message);
   },
   // saves or updates trip
   saveTrip: (trip) =>{
-    return instance.post("/api/trips", trip);
+    return instance.post(`${apiURL}/api/trips`, trip);
   },
   //saves user, either creating or updating if already exists
-  saveUser: (user) => {
-    console.log(user);
+  saveUser: (user, header) => {
+    console.log(user,header);
     if(user.isrider === "on")
     {
         user.isrider = true;
@@ -46,7 +49,7 @@ export default {
     {
         user.isdriver = false;
     }
-    return instance.post("/api/user", user);
+    return instance.post(`${apiURL}/api/user`, user /*, {headers:{header}}*/);
   },
    // Deletes the message based on message id, not the user id
    deleteMessage: (id) => {

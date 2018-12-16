@@ -21,12 +21,14 @@ var UserSchema = new Schema({
     },
     zipcode:{
         type: Number, 
-        required: true
+        required: true,
+        max:100000
     },
 
     birthdate:{
         type: String, 
-        required: true
+        required: true,
+        
     },
     email:{
         type: String, 
@@ -43,7 +45,7 @@ var UserSchema = new Schema({
 
     isdriver:{
         type: Boolean, 
-        default: false
+        default: false,
     },
 
     gender:{

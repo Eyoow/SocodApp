@@ -14,8 +14,6 @@ import history from './history';
 import MapContainer from "./components/mapContainer";
 //import API from './utils/API';
 
-const API_KEY =`${process.env.REACT_APP_API_KEY}`;
-console.log(API_KEY);
 const auth = new Auth();
 
 const handleAuthentication = (nextState, replace) => {
@@ -25,7 +23,7 @@ const handleAuthentication = (nextState, replace) => {
 }
 
 export const makeMainRoutes = () => {
-  auth.getProfile();
+ 
   return (
     <Router history={history} component={App}>
       <div>
@@ -68,7 +66,7 @@ export const makeMainRoutes = () => {
         <Route exact path ="/map" render={(props) =>{
           handleAuthentication(props);
           //return <MapWithDirections {...props} API_KEY = {App.API_KEY} auth={auth}/>
-          return <MapContainer {...props} API_KEY = {API_KEY} auth={auth}/>
+          return <MapContainer {...props} auth={auth}/>
           }
         } />
       </div>

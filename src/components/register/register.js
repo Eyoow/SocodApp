@@ -1,6 +1,5 @@
 import React from "react";
 import RegistrationForm from "../registrationForm";
-
 import "./register.css";
 
 const Register = props => {

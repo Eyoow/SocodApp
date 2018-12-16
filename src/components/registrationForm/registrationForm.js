@@ -6,8 +6,11 @@ import "./registrationForm.css";
 
 
 const RegistrationForm = props =>{
+    const header = { 'Authorization': `Bearer ${localStorage.getItem('access_token')}`}
+
     function handlesubmit(event){
         event.preventDefault();
+        
         let user = {};
         let form = document.forms["register"];
         let length = form.length;
@@ -15,7 +18,19 @@ const RegistrationForm = props =>{
            user[form[i].name]= form[i].value;
         }
         user.id = localStorage.getItem("profile");
-        API.saveUser(user);
+        API.saveUser(user,header)
+        .then(result => {
+            if (result.data.errors)
+            {
+                console.log(result.data.errors);
+            }
+            else{
+                console.log(result);
+            }
+        });
+        
+        
+        
     }
     return(
         <Form name="register" id="register" action="api/user" method="post" onSubmit={handlesubmit} buttonLabel="submit" fields={fields} />

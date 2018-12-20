@@ -7,7 +7,7 @@ import "./registrationForm.css";
 
 const RegistrationForm = props =>{
     const header = { 'Authorization': `Bearer ${localStorage.getItem('access_token')}`}
-
+    props.auth.getProfile();
     function handlesubmit(event){
         event.preventDefault();
         
@@ -15,18 +15,30 @@ const RegistrationForm = props =>{
         let form = document.forms["register"];
         let length = form.length;
         for(let i= 0; i<length; i++){
-           user[form[i].name]= form[i].value;
-        }
-        user.id = localStorage.getItem("profile");
-        API.saveUser(user,header)
-        .then(result => {
-            if (result.data.errors)
+            if(form[i].type === "checkbox")
             {
-                console.log(result.data.errors);
+                if(form[i].checked === true)
+                {
+                    user[form[i].name]= form[i].value;
+                }
+            
             }
             else{
-                console.log(result);
+                user[form[i].name]= form[i].value;
             }
+        }
+        
+        if (user.male)
+        {
+            user.gender = user.male;
+        }
+        else if(user.female)
+        {
+            user.gender = user.female;
+        }
+        API.saveUser(user,header)
+        .then(result => {
+            console.log(result);
         });
         
         

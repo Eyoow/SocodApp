@@ -50,7 +50,8 @@ var UserSchema = new Schema({
 
     gender:{
         type: String,
-        required: true
+        required: true,
+        enum:["M","F"]
     }
 });
 

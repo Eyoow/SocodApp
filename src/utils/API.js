@@ -32,23 +32,8 @@ export default {
   },
   //saves user, either creating or updating if already exists
   saveUser: (user, header) => {
+    user.id = localStorage.getItem("profile");
     console.log(user,header);
-    if(user.isrider === "on")
-    {
-        user.isrider = true;
-    }
-    else
-    {
-        user.isrider = false;
-    }
-    if(user.isdriver === "on")
-    {
-        user.isdriver = true;
-    }
-    else
-    {
-        user.isdriver = false;
-    }
     return instance.post(`${apiURL}/api/user`, user /*, {headers:{header}}*/);
   },
    // Deletes the message based on message id, not the user id

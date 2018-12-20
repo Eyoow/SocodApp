@@ -4,13 +4,13 @@ const fields = [
     {type:"text", isRequired:true, name:"street_address", placeholder:"123 main st", label:"Address"},
     {type:"number", isRequired:true, name:"zipcode", placeholder:"12345",label:"Zipcode"},
     {type:"date", isRequired:true, name:"birthdate", placeholder:"mm/dd/yyyy", label:"DOB"},
-    {type:"radio", isRequired:false, name:"male",label:"M"},
-    {type:"radio", isRequired:false, name:"female", label:"F"},
+    {type:"checkbox", isRequired:false, name:"male", value:"M", label:"M"},
+    {type:"checkbox", isRequired:false, name:"female", value:"F",label:"F"},
     // {type:"password", isRequired:true, name:"password", placeholder:"muhamadisthebest", label:"Password:"},
     {type: "email", isRequired:true, name:"email", placeholder:"socod@gmail.com",label:"Email"},
     // {type:"url", isRequired:true, name:"picture", placeholder:"http://mypic.com",label:"Picture:"},
-    {type:"checkbox", isRequired:false, name:"isrider", label:"Rider"},
-    {type:"checkbox", isRequired:false, name:"isdriver", label:"Driver"}
+    {type:"checkbox", isRequired:false, name:"isrider", value:true,label:"Rider"},
+    {type:"checkbox", isRequired:false, name:"isdriver", value:true,label:"Driver"}
     
     ];
 

@@ -6,8 +6,8 @@ const Input = props => {
         <div className="inputGroup">
         <label htmlFor={props.name}>{props.label}</label>
         {/*if input is required, adds required keyword to jsx*/
-            (props.isRequired?(
-                <input required {...props} /> 
+            (props.require ==="true"?(
+                <input required {...props}/> 
             ):
             ( 
                 <input {...props} /> 

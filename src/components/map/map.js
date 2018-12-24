@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Button from "../button";
+import API from "../../utils/API.js";
 // import MapControls from "../mapControls";
 //import DirectionsPanel from "../directionsPanel";
 import "./map.css"
@@ -148,6 +149,9 @@ class Map extends React.Component {
           this.loadMap();
         }
     }
+    saveTrip = route =>{
+      API.saveTrip(route);
+    }
 
     render() {
         return (
@@ -159,6 +163,7 @@ class Map extends React.Component {
             <input id="start" type="text" ></input>
             <input id="end" type="text"></input>
             <Button label="Find Route" onclick={() => this.onChangeHandler()} />
+            <button onClick={this.saveTrip(this.props.places)}>Save Trip</button>
           </div>
           <div ref='map' id="map">
           

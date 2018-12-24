@@ -1,5 +1,6 @@
 import React,{Component} from "react";
 import "./mapControl.css"
+import API from "../../utils/API";
 const { StandaloneSearchBox } = require("react-google-maps/lib/components/places/StandaloneSearchBox");
 
 class MapControl extends Component{
@@ -24,6 +25,9 @@ class MapControl extends Component{
         },
       })
     }
+
+    
+
     render(){
     return(
         <div data-standalone-searchbox="">
@@ -48,7 +52,7 @@ class MapControl extends Component{
             textOverflow: `ellipses`,
             }}
         />
-    
+        
         </StandaloneSearchBox>
         <ol>
         {this.props.places.map(({ place_id, formatted_address, geometry: { location } }) =>
@@ -59,6 +63,7 @@ class MapControl extends Component{
         </li>
         )}
         </ol>
+       
   </div>
 );
 } }

@@ -1,6 +1,4 @@
 import React, {Component} from "react";
-import Form from "../form";
-import fields from "./fields.js";
 import "./userProfile.css";
 import API from "../../utils/API";
 

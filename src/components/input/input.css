@@ -35,3 +35,6 @@ label{
     height: 33px; */
     border-radius: 5px 0 0 5px; 
 }
+select{
+    width:100%;
+}

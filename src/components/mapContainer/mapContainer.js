@@ -10,7 +10,7 @@ class mapContainer extends React.Component {
     render() {
      
       return (
-        <Map google={this.props.google} />
+        <Map google={this.props.google} {...this.props} />
       )
     }
 }

@@ -42,9 +42,7 @@ class MapWithDirections extends Component{
       );
     }
   
-    saveTrip = route =>{
-      API.saveTrip(route);
-    }
+  
   render(){
     return(
       <div id="mapContainer">
@@ -52,7 +50,7 @@ class MapWithDirections extends Component{
       </GoogleMap>
       <DirectionsRenderer directions={this.props.directions} /> 
       <MapControl props={this.state} />
-      <button onclick={this.saveTrip(this.props.places)}>Save Trip</button>
+     
       </div>
     );
   }

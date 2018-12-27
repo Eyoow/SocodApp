@@ -28,6 +28,7 @@ export default {
   },
   // saves or updates trip
   saveTrip: (trip) =>{
+    console.log(trip);
     return instance.post(`${apiURL}/api/trips`, trip);
   },
   //saves user, either creating or updating if already exists

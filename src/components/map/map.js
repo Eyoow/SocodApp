@@ -87,7 +87,10 @@ import "./map.css"
 // 
 class Map extends React.Component {
     
-  
+  constructor(props)
+  {
+    super(props);
+  }
   
  
     loadMap() {
@@ -128,6 +131,7 @@ class Map extends React.Component {
         }, function(response, status) {
           if (status === 'OK') {
             this.routeData = response;
+            localStorage.setItem("route",JSON.stringify(response));
             console.log(response);
             directionsDisplay.setDirections(response);
           } else {
@@ -142,6 +146,7 @@ class Map extends React.Component {
       
     componentDidMount() {
         this.loadMap();
+        this.props.auth.getProfile();
       }
 
     componentDidUpdate(prevProps, prevState) {
@@ -149,8 +154,17 @@ class Map extends React.Component {
           this.loadMap();
         }
     }
-    saveTrip = route =>{
-      API.saveTrip(route);
+    saveTrip = () =>{
+      let trip = {};
+      let route = JSON.parse(localStorage.getItem("route"));
+      console.log(route);
+      trip.dates = [];
+      trip.dates[0] = document.getElementsByName("start-date");
+      trip.dates[1] = document.getElementsByName("end-date");
+      trip.stops = route.routes[0].legs;
+      trip.driver = localStorage.getItem("profile");
+      trip.maxRiders = document.getElementsByName("seats").selectedIndex+1;
+      API.saveTrip(trip);
     }
 
     render() {
@@ -160,10 +174,27 @@ class Map extends React.Component {
           
           <div id="right-panel"></div>
           <div id="floating-panel">
+          
+          <label htmlFor="start">Start</label>
             <input id="start" type="text" ></input>
+            <label htmlFor="end">Destination</label>
             <input id="end" type="text"></input>
-            <Button label="Find Route" onclick={() => this.onChangeHandler()} />
-            <button onClick={this.saveTrip(this.props.places)}>Save Trip</button>
+            
+            <label htmlFor="start-date">Leave</label>
+            <input id="start-date" type="date"></input>
+            <label htmlFor="end-date">Return</label>
+            <input id="end-date" type="date"></input>
+            <label htmlFor="seats">Available seats</label>
+            <select name="seats">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <Button label="Get Route" onclick={() => this.onChangeHandler()} />
+            <Button label="Save Trip" onclick={() => this.saveTrip(this.routeData)} />
+            
           </div>
           <div ref='map' id="map">
           

@@ -1,17 +1,35 @@
-import React from "react";
+import React, {Component} from "react";
 import Message from "../message";
 import "./sent.css";
 
-const Sent = props => {
+class Sent extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            messages:props.messages
+        }
+    }
+
+   
+
+    componentWillReceiveProps(nextProps)
+    {
+        console.log(nextProps);
+        this.setState({messages:nextProps.messages});
+    }
+
+    render(){
     return(
-        props.messages.map((message,index) =>
+        
+        this.state.messages.map((message,index) =>
             {
                 return ( 
-                   <Message {...message} key={index} collapse={true} />
+                   <Message {...message} {...this.props} key={index} collapse={false} />
                 )
             }    
         )
-    );
+        );
+    }
 };
 
 export default Sent;

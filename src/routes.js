@@ -51,7 +51,10 @@ export const makeMainRoutes = () => {
           <Route exact path="/messages" render ={(props)=>{
             handleAuthentication(props);
               return (
+                <div id="messagePage">
+                <Menu {...props} auth= {auth} buttons={[{label:"Profile", onclick:()=>history.replace("profile")}]} />
                 <Messages {...props} auth={auth} />
+                </div>
               )
           }} />
         <Route exact path="/findTrips" render={(props) => {

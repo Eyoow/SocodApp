@@ -9,7 +9,7 @@ import "./findTrips.css";
 const FindTrips = props => {
     return(
         
-        <Form {...props} {...fields} buttonLabel="Find Trips" onclick={()=>API.getTrips().then(trips =>{
+        <Form {...props} fields = {fields} buttonLabel="Find Trips" onclick={()=>API.getTrips().then(trips =>{
             return <Trips {...props} trips={trips} />
         })} />      
     );

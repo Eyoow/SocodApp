@@ -131,6 +131,7 @@ app.post("/api/messages", /*authCheck,*/ function(req,res){
 });
 app.post("/api/user", /*authCheck,*/ function(req,res){
     let user = req.body;
+    console.log(user);
     db.User.findOneAndUpdate({_id: user.id},user,{upsert: true, returnOriginal: false, runValidators: true})
         .then(user => {
             console.log(user);

@@ -161,9 +161,9 @@ class Map extends React.Component {
       trip.dates = [];
       trip.dates[0] = document.getElementsByName("start-date");
       trip.dates[1] = document.getElementsByName("end-date");
-      trip.stops = route.routes[0].legs;
+      trip.stops = route.geocoded_waypoints;
       trip.driver = localStorage.getItem("profile");
-      trip.maxRiders = document.getElementsByName("seats").selectedIndex+1;
+      trip.maxRiders = parseInt(document.getElementsByName("seats").selectedIndex)+1;
       API.saveTrip(trip);
     }
 

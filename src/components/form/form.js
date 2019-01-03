@@ -1,14 +1,20 @@
-import React from "react";
+import React,{Component} from "react";
 import Input from "../input";
 import Button from "../button";
 import "./form.css";
 
-const Form = props => {
+class Form extends Component{
+
+    constructor(props){
+        super(props);
+    }
     
+    render(){
+       
     return (
-        <form name={props.name} id={props.id} action={props.action} onSubmit={props.onSubmit} method={props.method}>
+        <form name={this.props.name} id={this.props.id} action={this.props.action} onSubmit={this.props.onSubmit} method={this.props.method}>
             {
-                props.fields.map((field,index) =>{
+                this.props.fields.map((field,index) =>{
                     return (
                         <Input key={index} {...field}/>
                     );
@@ -17,6 +23,7 @@ const Form = props => {
             <Input type="submit" />
         </form>
     );
+        }
 };
 
 export default Form;

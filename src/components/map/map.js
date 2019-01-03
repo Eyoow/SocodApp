@@ -159,11 +159,16 @@ class Map extends React.Component {
       let route = JSON.parse(localStorage.getItem("route"));
       console.log(route);
       trip.dates = [];
-      trip.dates[0] = document.getElementsByName("start-date");
-      trip.dates[1] = document.getElementsByName("end-date");
+      trip.dates[0] = document.getElementById("start-date").value;
+      trip.dates[1] = document.getElementById("end-date").value;
       trip.stops = route.geocoded_waypoints;
+      trip.stops.forEach((stop,index) =>
+        trip.stops[index]=stop.place_id
+      );
       trip.driver = localStorage.getItem("profile");
-      trip.maxRiders = parseInt(document.getElementsByName("seats").selectedIndex)+1;
+      let seats = document.getElementById("seats");
+      seats = seats.options[seats.selectedIndex].value;
+      trip.max_riders = parseInt(seats);
       API.saveTrip(trip);
     }
 
@@ -185,7 +190,7 @@ class Map extends React.Component {
             <label htmlFor="end-date">Return</label>
             <input id="end-date" type="date"></input>
             <label htmlFor="seats">Available seats</label>
-            <select name="seats">
+            <select name="seats" id = "seats">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>

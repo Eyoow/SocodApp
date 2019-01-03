@@ -106,7 +106,7 @@ app.get("/api/user_name/:user_name", /*authCheck,*/function(req,res){
 });
 
 app.get("/api/trips", /*authCheck,*/ function(req,res){
-    db.Trip.find({})
+    db.Trip.find({}).populate('driver').populate('riders')
     .then(trips => res.json(trips))
     .catch(err => res.json(err));
 });
@@ -119,7 +119,7 @@ app.get("/api/riders", /*authCheck,*/ function(req,res){
 });
 
 app.get("/api/messages/:id", /*authCheck,*/ function(req,res){
-    db.Message.find({recipient: req.params.id})
+    db.Message.find({recipient: req.params.id}).populate('recipient').populate('sender')
     .then(messages => res.json(messages))
     .catch(err => res.json(err));
 });
@@ -157,7 +157,7 @@ app.post("/api/trips", /*authCheck,*/ function(req,res){
     .catch(err => res.json(err));}
 
     else{
-        res.text("ride is full");
+        return res.text("ride is full")
     }
 }
 else{

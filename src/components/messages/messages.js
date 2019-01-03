@@ -1,7 +1,5 @@
 import React, {Component} from "react";
-import Sent from "../sent";
 import Message from "../message";
-import Received from "../received";
 import API from "../../utils/API";
 
 class Messages extends Component{
@@ -24,7 +22,7 @@ class Messages extends Component{
         API.getMessages(id).then(results => {
             console.log(results);
             results.data.forEach(message =>{
-                if (message.recipient === id)
+                if (message.recipient._id == id)
                 {
                     received.push(message);
                 }
@@ -44,7 +42,8 @@ class Messages extends Component{
         API.getMessages(this.state.id).then(results => {
             console.log(results);
             results.data.forEach(message =>{
-                if (message.recipient === this.state.id)
+                console.log(message);
+                if (message.recipient._id == this.state.id)
                 {
                     received.push(message);
                 }
@@ -60,19 +59,14 @@ class Messages extends Component{
     
     
     render(){
+        console.log(this.state);
         return(
         <div>
         <div id="inbox">
         <button onClick={()=>this.getMessages()}> Get Messages </button>
             <span>Inbox</span>
             
-            <Received {...this.props} messages={this.state.received} />
-            {this.state.received.map((message, index) =>{
-                console.log(message);
-                return(
-                    <Message message={message} key={index} />
-                )
-            })}
+            {this.state.received.map((message, index) => <Message message={message} key={index} />)}
         </div>
         <div id="outbox">
             <span>Outbox</span>

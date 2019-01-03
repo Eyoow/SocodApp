@@ -4,18 +4,18 @@ var Schema = mongoose.Schema;
 var TripSchema = new Schema({
  
     stops:[{
-        type: Number, 
+        type: String, 
         required: true
     }],
     driver:{
-        type: Schema.Types.ObjectId, 
+        type: String, 
         ref: "User"
     },
 
-    price:{
-        type: Number, 
-        required: true
-    },
+    // price:{
+    //     type: Number, 
+    //     required: true
+    // },
     dates:[{
         type: Date, 
         required: true
@@ -28,7 +28,7 @@ var TripSchema = new Schema({
     },
     
     riders:[{
-        type: Schema.Types.ObjectId, 
+        type: String, 
         ref: "User"
     }]
 });

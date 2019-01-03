@@ -33,6 +33,8 @@ class Messages extends Component{
         
         }
         );
+        console.log(received);
+        console.log(sent);
         this.setState({id:id,received:received,sent:sent, time:Date.now()});
     }
 
@@ -54,6 +56,8 @@ class Messages extends Component{
             
         }
         );
+        console.log(received);
+        console.log(sent);
         this.setState({received:received,sent:sent});
     }
     

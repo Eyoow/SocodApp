@@ -35,12 +35,7 @@ class Message extends Component{
                 </ul>
             </div>
             <div className = "message-body">
-                { !this.props.collapse?(
-                    this.state.message.body
-                    ):(
-                        <div></div>
-                    )
-                }
+                { this.state.message.body}            }
             </div>
         </div> 
         )

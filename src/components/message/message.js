@@ -1,45 +1,27 @@
-import React,{Component} from "react";
+import React from "react";
 import "./message.css";
 
-class Message extends Component{
-    constructor(props)
-    {
-        super(props);
-        console.log(props.message);
-        this.state = {message:props.message};
-    }
-
-    componentDidMount(){
-        console.log(this.props);
-    }
-
-    componentWillReceiveProps(nextProps)
-    {
-        this.setState({message:nextProps.message});
-    }
-
-    render(){
-        return(
-        <div className= "message-container" key={this.props.key}>
+const Message = props =>{
+    return(
+        <div className= "message-container" key={props.key}>
             <div className = "message-header">
                 <ul>
                     <li>
-                        From: {this.state.message.sender}
+                        From: {props.sender}
                     </li>
                     <li>
-                        To: {this.state.message.recipient}
+                        To: {props.recipient}
                     </li>
                     <li>
-                        Subject: {this.state.message.subject}
+                        Subject: {props.subject}
                     </li>
                 </ul>
             </div>
             <div className = "message-body">
-                { this.state.message.body}            }
+                { props.body}            
             </div>
         </div> 
-        )
-    }
+    )
 };
 
 export default Message;

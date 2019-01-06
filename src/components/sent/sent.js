@@ -1,27 +1,12 @@
-import React, {Component} from "react";
+import React from "react";
 import Message from "../message";
 import "./sent.css";
 
-class Sent extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            messages:props.messages
-        }
-    }
-
+const Sent = props => {
    
-
-    componentWillReceiveProps(nextProps)
-    {
-        console.log(nextProps);
-        this.setState({messages:nextProps.messages});
-    }
-
-    render(){
     return(
         
-        this.state.messages.map((message,index) =>
+        props.messages.map((message,index) =>
             {
                 return ( 
                    <Message {...message} {...this.props} key={index} collapse={false} />
@@ -29,7 +14,6 @@ class Sent extends Component {
             }    
         )
         );
-    }
 };
 
 export default Sent;

@@ -1,6 +1,7 @@
 import React from "react";
 import Form from "../form";
 import API from "../../utils/API";
+import AWS from "../AWS";
 import fields from "./fields.js";
 import "./registrationForm.css";
 
@@ -45,7 +46,10 @@ const RegistrationForm = props =>{
         
     }
     return(
+       <div>
+        <AWS />
         <Form name="register" id="register" action="api/user" method="post" onSubmit={handlesubmit} buttonLabel="submit" fields={fields} />
+        </div>
     );
 };
 

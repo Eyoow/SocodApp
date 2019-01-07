@@ -34,10 +34,10 @@ var UserSchema = new Schema({
         type: String, 
         required: true
     },
-    // picture:{
-    //     type: String, 
-    //     required: true
-    // },
+    image:{
+       type: String, 
+       required: true
+    },
     isrider:{
         type: Boolean, 
         default: false

@@ -34,6 +34,7 @@ class UserProfile extends Component{
                 <ul id="profile">
                     <li>Name: {this.state.user.name}</li>
                     <li>Username: {this.state.user.user_name}</li>
+                    <li><img src = {this.state.user.image} alt={this.state.user.name} /></li>
                 </ul>
     );
    

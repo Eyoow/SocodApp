@@ -18,6 +18,8 @@ class AWS extends Component {
         'Content-Type': 'multipart/form-data'
       }
     }).then(response => {
+      console.log(response.data.Location);
+      localStorage.setItem("imgURL", response.data.Location);
         alert("Upload successful!");
       // handle your response;
     }).catch(error => {

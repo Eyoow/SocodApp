@@ -183,11 +183,11 @@ app.post("/api/user", /*authCheck,*/ function(req,res){
     db.User.findOneAndUpdate({_id: user.id},user,{upsert: true, returnOriginal: false, runValidators: true})
         .then(user => {
             console.log(user);
-            res.json(user);
+            return res.json(user);
         })
         .catch(err => {
             console.log(err);
-            res.json(err);
+            return res.json(err);
         })
       
 });

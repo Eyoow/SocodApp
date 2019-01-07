@@ -37,12 +37,19 @@ const RegistrationForm = props =>{
         {
             user.gender = user.female;
         }
+        user.image = localStorage.getItem("imgURL");
+        if (!user.image)
+        {
+            alert("Please upload an image of yourself!");
+        }
+        else{
         API.saveUser(user,header)
         .then(result => {
+            alert("Profile successfully created!");
             console.log(result);
         });
         
-        
+    }
         
     }
     return(

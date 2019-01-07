@@ -21,6 +21,7 @@ class AWS extends Component {
         alert("Upload successful!");
       // handle your response;
     }).catch(error => {
+        console.log(error);
         alert("Upload failed.");
       // handle your error
     });

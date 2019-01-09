@@ -46,7 +46,7 @@ const RegistrationForm = props =>{
         API.saveUser(user,header)
         .then(result => {
             alert("Profile successfully created!");
-            console.log(result);
+            props.history.replace("/profile");
         });
         
     }

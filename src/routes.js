@@ -8,7 +8,7 @@ import Menu from './components/menu';
 import Register from "./components/register";
 import FindTrips from "./components/findTrips";
 import UserProfile from "./components/userProfile";
-import Messages from "./components/messages";
+import Mailbox from "./components/mailbox";
 import history from './history';
 //import MapWithDirections from "./components/mapWithDirections";
 import MapContainer from "./components/mapContainer";
@@ -54,7 +54,7 @@ export const makeMainRoutes = () => {
               return (
                 <div id="messagePage">
                 <Menu {...props} auth= {auth} buttons={[{label:"Profile", onclick:()=>history.replace("profile")}]} />
-                <Messages {...props} auth={auth} />
+                <Mailbox {...props} auth={auth} />
                 </div>
               )
           }} />

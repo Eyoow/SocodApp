@@ -21,7 +21,9 @@ class Messages extends Component{
         let received = [];
         let sent = [];
         API.getMessages(id).then(results => {
-            results.data.forEach(message =>{
+            let resultsArray = results.data.slice();
+            console.log(resultsArray);
+            resultsArray.map(message =>{
                 if (message.recipient._id === id)
                 {
                     received.push(message);
@@ -41,8 +43,8 @@ class Messages extends Component{
         let received = [];
         let sent =[];
         API.getMessages(this.state.id).then(results => {
-            
-            results.data.forEach(message =>{
+            let resultsArray = results.data.slice();
+            resultsArray.map(message =>{
                 
                 if (message.recipient._id === this.state.id)
                 {
@@ -51,16 +53,17 @@ class Messages extends Component{
                 else{
                     sent.push(message);
                 }
+                
             });
-            
-        }
-        );
+          }
+        ).catch(err => console.log(err));
         
         this.setState({received:received,sent:sent},console.log(this.state));
     }
     
     
     render(){
+        
         return(
         <div>
         <div id="inbox">

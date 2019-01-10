@@ -3,22 +3,22 @@ import "./message.css";
 
 const Message = props =>{
     return(
-        <div className= "message-container" key={props.key}>
+        <div className= "message-container" key={props.message._id}>
             <div className = "message-header">
                 <ul>
                     <li>
-                        From: {props.sender}
+                        From: {props.message.sender}
                     </li>
                     <li>
-                        To: {props.recipient}
+                        To: {props.message.recipient}
                     </li>
                     <li>
-                        Subject: {props.subject}
+                        Subject: {props.message.subject}
                     </li>
                 </ul>
             </div>
             <div className = "message-body">
-                { props.body}            
+                { props.message.body}            
             </div>
         </div> 
     )

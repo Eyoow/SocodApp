@@ -6,7 +6,7 @@ const Trip = props =>{
         <div className="tripDiv">
             <div className="start-date">{props.trip.start}</div>
             <div className="end-date">{props.trip.end}</div>
-            <div className="driver">{props.trip.driver.user_name}</div>
+            <div className="driver"><a href={`./user/${props.trip.driver.user_name}`}>{props.trip.driver.user_name}</a></div>
             <div className="riders"><ul>{props.trip.riders.map((rider,index) => <li key={index}>{rider.user_name}</li>)}</ul></div>
             <div className="stops">
             <ul>

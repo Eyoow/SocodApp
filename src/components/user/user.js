@@ -23,8 +23,18 @@ class User extends Component{
     }
 
     render(){
+        
         return(
-            <div>{this.state.user.name}</div>
+        this.state.user ? (
+        <div>
+        <ul id="user">
+            <li>Name: {this.state.user.name}</li>
+            <li>Username: {this.state.user.user_name}</li>
+            <li><img src = {this.state.user.image} alt={this.state.user.name} /></li>
+        </ul>
+        </div>
+        ):
+        (<div></div>)
         )
     }
 }

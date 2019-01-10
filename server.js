@@ -142,14 +142,7 @@ app.get("/api/users", (res) => {
 
 app.get("/api/user_name/:user_name", /*authCheck,*/function(req,res){
     db.User.findOne({user_name: req.params.user_name})
-    .then(() =>{ 
-        if(res.body){
-            res.json({"taken":"true"});
-        }
-        else{
-            res.json({"taken":"false"});
-        }
-    })
+    .then(user => res.json(user))
     .catch(err => res.json(err));
 });
 

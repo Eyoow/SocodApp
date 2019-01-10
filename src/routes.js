@@ -7,6 +7,7 @@ import Auth from './components/auth';
 import Menu from './components/menu';
 import Register from "./components/register";
 import FindTrips from "./components/findTrips";
+import User from "./components/user";
 import UserProfile from "./components/userProfile";
 import Mailbox from "./components/mailbox";
 import history from './history';
@@ -66,6 +67,13 @@ export const makeMainRoutes = () => {
           handleAuthentication(props);
           return <UserProfile {...props} auth={auth}  />
           }
+         
+        }/>
+        <Route path="/user/:name" render={(props) => {
+          handleAuthentication(props);
+          return <User {...props} auth={auth}  />
+          }
+         
         }/>
         <Route exact path ="/map" render={(props) =>{
           handleAuthentication(props);

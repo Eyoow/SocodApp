@@ -13,10 +13,30 @@ class User extends Component{
     }
 
 
+    handleSubmit(event){
+        event.preventDefault();
+        let message = {};
+        message.sender = localStorage.getItem("profile");
+        message.recipient = localStorage.getItem("recipient");
+        let form = document.forms["message"];
+        let length = form.length;
+        for(let i= 0; i<length; i++){
+            message[form[i].name]= form[i].value;
+        }
+        
+         API.sendMessage(message)
+        .then(result => {
+            alert("Message sent!");
+            console.log(result);
+        });
+        
+    }
     componentDidMount(){
+        this.props.auth.getProfile();
         API.findUserByName(this.props.match.params.name)
         .then( result=> {
             console.log(result);
+            localStorage.setItem("recipient", result.data._id);
             this.setState({user:result.data});
         })
         .catch(err => console.log(err))
@@ -31,6 +51,13 @@ class User extends Component{
             <li>Name: {this.state.user.name}</li>
             <li>Username: {this.state.user.user_name}</li>
             <li><img src = {this.state.user.image} alt={this.state.user.name} /></li>
+            <form name = "message" id="message" action="api/messages" method="post" className = "sendMessage" onSubmit={this.handleSubmit} >
+                <label htmlFor = "subject">Subject:</label>
+                <input name = "subject" type="text" />
+                <label htmlFor ="message">Message:</label>
+                <textarea rows="10" name = "message" type="text" />
+                <input type="submit" />
+            </form>
         </ul>
         </div>
         ):

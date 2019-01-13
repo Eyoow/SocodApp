@@ -160,9 +160,10 @@ class Map extends React.Component {
       let trip = {};
       let route = JSON.parse(localStorage.getItem("route"));
       console.log(route);
+      console.log(document.getElementById("start-date").value);
       trip.dates = [];
-      trip.dates[0] = document.getElementById("start-date").value;
-      trip.dates[1] = document.getElementById("end-date").value;
+      trip.dates[0] =  new Date(document.getElementById("start-date").value);
+      trip.dates[1] =  new Date(document.getElementById("end-date").value);
       trip.stops = route.geocoded_waypoints;
       trip.stops.forEach((stop,index) =>
         trip.stops[index]=stop.place_id
@@ -200,7 +201,7 @@ class Map extends React.Component {
               <option value="5">5</option>
             </select>
             <Button label="Get Route" onclick={() => this.onChangeHandler()} />
-            <button className="btn right" onclick={() => this.saveTrip(this.routeData)} >Save Trip</button>
+            <button className="btn right" onClick={() => this.saveTrip(this.routeData)} >Save Trip</button>
             
           </div>
           <div ref='map' id="map">

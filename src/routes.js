@@ -28,7 +28,8 @@ export const makeMainRoutes = () => {
   return (
     <Router history={history} component={App}>
       <div>
-        <Route exact path="/" render={(props) => <App {...props} auth={auth} />} />
+       
+        <Route path="/" render={(props) => <App {...props} auth={auth} />} />
         <Route path="/callback" render={(props) => {
           handleAuthentication(props);
           return <Callback {...props} auth={auth}/>}
@@ -36,15 +37,11 @@ export const makeMainRoutes = () => {
         <Route exact path="/signup" render={(props) => {
               handleAuthentication(props);
               return (
-                <div className="container">
-                  <Jumbotron {...props} auth={auth} />
-                  <div className="navbar">
-                    <Menu {...props} auth={auth} buttons={[{label:"Sign Up!", onclick:()=>history.replace("signup")}]} />
-                  </div>
+                
                   <div className="content">
                     <Register {...props} auth={auth}/>
                   </div>
-                </div>
+               
               )
             } 
           

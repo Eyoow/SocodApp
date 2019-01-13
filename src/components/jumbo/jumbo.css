@@ -3,3 +3,9 @@
     background-color: #53c01f;
     height: 300px;
 }
+
+@media only screen and (max-width:768px){
+    .jumbo{
+        height: 31px;
+    }
+}

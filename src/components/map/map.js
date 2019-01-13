@@ -155,6 +155,8 @@ class Map extends React.Component {
         }
     }
     saveTrip = () =>{
+      var start = document.getElementById('start').value;
+      var end = document.getElementById('end').value;
       let trip = {};
       let route = JSON.parse(localStorage.getItem("route"));
       console.log(route);
@@ -177,7 +179,7 @@ class Map extends React.Component {
           <div id = "mapContainer">
           {/* <MapControls /> */}
           
-          <div id="right-panel"></div>
+          
           <div id="floating-panel">
           
           <label htmlFor="start">Start</label>
@@ -198,13 +200,14 @@ class Map extends React.Component {
               <option value="5">5</option>
             </select>
             <Button label="Get Route" onclick={() => this.onChangeHandler()} />
-            <Button label="Save Trip" onclick={() => this.saveTrip(this.routeData)} />
+            <button className="btn right" onclick={() => this.saveTrip(this.routeData)} >Save Trip</button>
             
           </div>
           <div ref='map' id="map">
           
             Loading map...
           </div>
+          <div id="right-panel"></div>
           
 
           {/* <DirectionsPanel hidden={this.props.hidden}/> */}

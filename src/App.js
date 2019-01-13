@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Menu from "./components/menu";
+import Jumbotron from "./components/jumbo";
 import './App.css';
 
 class App extends Component {
@@ -23,7 +24,12 @@ class App extends Component {
   
     render() {
      return(
-				<Menu auth={this.props.auth} goTo={this.goTo} buttons={[{label:"Sign up!",onclick:()=>this.goTo("signup")}]} />
+      <div className="container">
+      <Jumbotron {...this.props} auth={this.props.auth} />
+      <div className="navbar">
+        <Menu {...this.props} history={this.props.history} auth={this.props.auth} />
+      </div>
+</div>
       );
     }
 }

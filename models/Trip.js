@@ -11,7 +11,14 @@ var TripSchema = new Schema({
         type: String, 
         ref: "User"
     },
-
+    start:{
+        type:String,
+        required: true
+    },
+    end:{
+        type:String,
+        required:true
+    },
     // price:{
     //     type: Number, 
     //     required: true

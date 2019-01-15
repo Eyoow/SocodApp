@@ -164,10 +164,19 @@ class Map extends React.Component {
       trip.dates = [];
       trip.dates[0] =  new Date(document.getElementById("start-date").value);
       trip.dates[1] =  new Date(document.getElementById("end-date").value);
-      trip.stops = route.geocoded_waypoints;
-      trip.stops.forEach((stop,index) =>
-        trip.stops[index]=stop.place_id
+      let stops = route.routes[0].legs;
+      trip.stops = [];
+      stops.forEach((stop) =>{
+        let newStop = {};
+        newStop.start=stop.start_address;
+        newStop.startLoc=stop.start_location;
+        newStop.end = stop.end_address;
+        newStop.endLoc = stop.end_location;
+        trip.stops.push(newStop);
+        }
       );
+      trip.start = start;
+      trip.end = end;
       trip.driver = localStorage.getItem("profile");
       let seats = document.getElementById("seats");
       seats = seats.options[seats.selectedIndex].value;

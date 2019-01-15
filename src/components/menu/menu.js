@@ -15,6 +15,7 @@ const Menu = props => {
                     <Button label = "Profile" onclick={() => props.history.replace("/profile")} />
                     <Button label ="Find Trips" onclick ={() => props.history.replace("/findTrips")} />
                     <Button label ="Plan Trip" onclick={() => props.history.replace("/map")} />
+                    <Button label="Our Team" onclick={()=>props.history.replace("/team")} />
                     </div>
               
                 ):

@@ -160,7 +160,7 @@ app.get("/api/riders", /*authCheck,*/ function(req,res){
 });
 
 app.get("/api/messages/:id", /*authCheck,*/ function(req,res){
-    db.Message.find({recipient: req.params.id}).populate('recipient').populate('sender')
+    db.Message.find({recipient: req.params.id}).populate('sender').populate('recipient')
     .then(messages => res.json(messages))
     .catch(err => res.json(err));
 });

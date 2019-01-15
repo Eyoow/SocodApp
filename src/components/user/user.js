@@ -26,7 +26,8 @@ class User extends Component{
         
          API.sendMessage(message)
         .then(result => {
-            alert("Message sent!");
+            if(result.data.errors) alert(result.data.message);
+            else alert("Message sent!");
             console.log(result);
         });
         
@@ -54,8 +55,8 @@ class User extends Component{
             <form name = "message" id="message" action="api/messages" method="post" className = "sendMessage" onSubmit={this.handleSubmit} >
                 <label htmlFor = "subject">Subject:</label>
                 <input name = "subject" type="text" />
-                <label htmlFor ="message">Message:</label>
-                <textarea rows="10" name = "message" type="text" />
+                <label htmlFor ="body">Message:</label>
+                <textarea rows="10" name = "body" type="text" />
                 <input type="submit" />
             </form>
         </ul>

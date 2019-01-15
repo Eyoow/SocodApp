@@ -5,6 +5,7 @@ import Callback from './Callback';
 import Jumbotron from "./components/jumbo";
 import Auth from './components/auth';
 import Menu from './components/menu';
+//import Team from "./components/team";
 import Register from "./components/register";
 import FindTrips from "./components/findTrips";
 import User from "./components/user";
@@ -51,11 +52,19 @@ export const makeMainRoutes = () => {
             
               return (
                 <div id="messagePage">
-                <Menu {...props} auth= {auth} buttons={[{label:"Profile", onclick:()=>history.replace("profile")}]} />
                 <Mailbox {...props} auth={auth} />
                 </div>
               )
           }} />
+           {/* <Route exact path="/team" render ={(props)=>{
+            handleAuthentication(props);
+            
+              return (
+                <div id="teamPage">
+                <Team {...props} auth={auth} />
+                </div>
+              )
+          }} /> */}
         <Route exact path="/findTrips" render={(props) => {
           handleAuthentication(props);
           return <FindTrips {...props} auth={auth}/>} 

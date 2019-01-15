@@ -28,6 +28,8 @@ class Mailbox extends Component {
         let messages = this.state.messages;
         
         return(
+            
+            
             messages.map(message => {
                 
                 return(
@@ -53,8 +55,8 @@ class Mailbox extends Component {
 
                     </div> 
                 );
-            })
-        );
+            }
+        ));
     }
 };
 

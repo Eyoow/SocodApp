@@ -3,8 +3,10 @@ import Form from "../form";
 import fields from "./fields";
 import Trip from "../trip";
 import API from "../../utils/API";
+import getDistance from "../../utils/getDistance";
 // import filterTrips from "./filterTrips.js";
 import "./findTrips.css";
+import Axios from "axios";
 
 class FindTrips extends Component{
     
@@ -13,8 +15,8 @@ class FindTrips extends Component{
         this.props.auth.getProfile();
         this.state = {
             tripData: [],
-            start:"",
-            end:""
+            start:[],
+            end:[]
         }
         this.getTrips = this.getTrips.bind(this);
     }
@@ -30,7 +32,7 @@ class FindTrips extends Component{
         {
             rider[form[i].name]= form[i].value;
         }
-        
+        console.log(rider);
         API.getTrips(rider).then(trips =>{
             let results = trips.data;
             console.log(results);
@@ -43,11 +45,21 @@ class FindTrips extends Component{
             // else{
             //     return <p>No Trips Found</p>;
             // }
-           
+         
         });
+        Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${rider.start_address}&key=${process.env.REACT_APP_API_KEY}`)
+        .then(query => {
+            console.log(query);
+            this.setState({start: query.data.results[0].geometry.location})});
+        Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${rider.end_address}&key=${process.env.REACT_APP_API_KEY}`)
+        .then(query => {
+            console.log(query);
+            this.setState({end: query.data.results[0].geometry.location})});
+            
     }
 
     render(){
+    
     return(
         <div>
         <Form {...this.props} name = "tripFinder" fields = {fields} buttonLabel="Find Trips" onSubmit={this.getTrips} />

@@ -188,24 +188,29 @@ app.post("/api/user", /*authCheck,*/ function(req,res){
 
 app.post("/api/trips", /*authCheck,*/ function(req,res){
     let trip = req.body;
-    console.log(trip);
+    
    if(trip._id)
     {
-    if(trip.riders.length<trip.max_riders){
+        if(trip.riders.length<trip.max_riders){
 
-    db.Trip.findOneAndUpdate({_id: trip},{upsert: true})
-    .then(trip => res.json(trip))
-    .catch(err => res.json(err));}
+            db.Trip.findOneAndUpdate({_id: trip},{upsert: true})
+            .then(trip => res.json(trip))
+            .catch(err => res.json(err));
+        }
 
-    else{
-        return res.text("ride is full")
+        else{
+            return res.text("ride is full")
+        }
     }
-}
-else{
-    db.Trip.create(trip)
-    .then(trip => res.json(trip))
-    .catch(err => res.json(err));}
-});
+    else{
+        db.Trip.create(trip)
+        .then(trip => {
+            console.log(trip);
+            return res.json(trip);
+        })
+        .catch(err => res.json(err));
+        }
+    });
 
 
 app.delete("/api/messages/:id", /*authCheck,*/ function(req,res){

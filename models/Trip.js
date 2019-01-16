@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var TripSchema = new Schema({
  
     stops:[{
-        type: String, 
+        type: Object, 
         required: true
     }],
     driver:{

@@ -181,7 +181,8 @@ class Map extends React.Component {
       let seats = document.getElementById("seats");
       seats = seats.options[seats.selectedIndex].value;
       trip.max_riders = parseInt(seats);
-      API.saveTrip(trip);
+      API.saveTrip(trip)
+      .then(result => console.log(result));
     }
 
     render() {

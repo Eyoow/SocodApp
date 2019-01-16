@@ -10,11 +10,11 @@ const Trip = props =>{
             <div className="riders"><ul>{props.trip.riders.map((rider,index) => <li key={index}>{rider.user_name}</li>)}</ul></div>
             <div className="stops">
             <ul>
-                {props.trip.stops.map((stop,index) => {
+                {/* {props.trip.stops.map((stop,index) => {
                     return(
-                        <li key={index}>{stop}</li>
+                        <li classkey={index}>{stop}</li>
                     );
-                })}
+                })} */}
             </ul>
             </div>
         </div>

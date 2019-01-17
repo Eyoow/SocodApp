@@ -10,9 +10,8 @@ export default {
     return instance.get(`${apiURL}/api/messages/${id}`);
   },
   // gets all trips
-  getTrips: (rider) =>{
-    console.log(rider);
-    return instance.get(`${apiURL}/api/trips/`,rider);
+  getTrips: () =>{
+    return instance.get(`${apiURL}/api/trips/`);
   },
   //finds user by name
   findUserByName: (user_name) => {

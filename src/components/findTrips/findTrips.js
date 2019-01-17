@@ -3,6 +3,7 @@ import Form from "../form";
 import fields from "./fields";
 import Trip from "../trip";
 import API from "../../utils/API";
+import getDistance from "../../utils/getDistance";
 import "./findTrips.css";
 import Axios from "axios";
 
@@ -48,10 +49,23 @@ class FindTrips extends Component{
             .then(query2 => {
             
             rider.endLoc = query2.data.results[0].geometry.location;
-            API.getTrips(rider).then(trips =>{
+            API.getTrips().then(trips =>{
                 let results = trips.data;
                 console.log(results);
-               
+                results.forEach(trip =>
+                    {
+                        trip.stops.forEach( stop => 
+                            {
+                                console.log(stop);
+                                
+                                stop.startDistance = getDistance(stop.startLoc.lat, stop.startLoc.lng, rider.startLoc.lat, rider.startLoc.lng);
+                                stop.endDistance = getDistance(stop.endLoc.lat, stop.endLoc.lng, rider.endLoc.lat, rider.endLoc.lng);
+                            }    
+                        
+                        )
+                    
+                    })
+                
                 this.setState({tripData:results});
                 });
             })

@@ -2,6 +2,7 @@ import React from "react";
 import "./trip.css";
 
 const Trip = props =>{
+    console.log(props.trip);
     return(
         <div className="tripDiv">
             <div className="start-date">{props.trip.start}</div>

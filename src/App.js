@@ -25,11 +25,12 @@ class App extends Component {
     render() {
      return(
       <div className="container">
-      <Jumbotron {...this.props} auth={this.props.auth} />
       <div className="navbar">
         <Menu {...this.props} history={this.props.history} auth={this.props.auth} />
       </div>
-</div>
+      <Jumbotron {...this.props} auth={this.props.auth} />
+      
+      </div>
       );
     }
 }

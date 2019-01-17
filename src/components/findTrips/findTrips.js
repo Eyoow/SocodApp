@@ -3,8 +3,6 @@ import Form from "../form";
 import fields from "./fields";
 import Trip from "../trip";
 import API from "../../utils/API";
-import getDistance from "../../utils/getDistance";
-// import filterTrips from "./filterTrips.js";
 import "./findTrips.css";
 import Axios from "axios";
 
@@ -33,11 +31,7 @@ class FindTrips extends Component{
             rider[form[i].name]= form[i].value;
         }
         console.log(rider);
-        API.getTrips(rider).then(trips =>{
-            let results = trips.data;
-            console.log(results);
-           
-            this.setState({tripData:results})
+        
                         // if(trips.data.length > 0)
             // {
             //     return <Trips {...this.props} trips={trips.data} />
@@ -46,17 +40,24 @@ class FindTrips extends Component{
             //     return <p>No Trips Found</p>;
             // }
          
-        });
+        
         Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${rider.start_address}&key=${process.env.REACT_APP_API_KEY}`)
-        .then(query => {
-            console.log(query);
-            this.setState({start: query.data.results[0].geometry.location})});
-        Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${rider.end_address}&key=${process.env.REACT_APP_API_KEY}`)
-        .then(query => {
-            console.log(query);
-            this.setState({end: query.data.results[0].geometry.location})});
+        .then(query1 => {
+            rider.startLoc = query1.data.results[0].geometry.location;
+            Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${rider.end_address}&key=${process.env.REACT_APP_API_KEY}`)
+            .then(query2 => {
             
-    }
+            rider.endLoc = query2.data.results[0].geometry.location;
+            API.getTrips(rider).then(trips =>{
+                let results = trips.data;
+                console.log(results);
+               
+                this.setState({tripData:results});
+                });
+            })
+           });
+        }
+
 
     render(){
     

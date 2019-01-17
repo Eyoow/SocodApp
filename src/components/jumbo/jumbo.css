@@ -2,6 +2,7 @@
     width: 100%;
     background-color: #53c01f;
     height: 300px;
+    margin-bottom: 31px;
 }
 
 @media only screen and (max-width:768px){

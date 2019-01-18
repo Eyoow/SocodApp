@@ -16,9 +16,18 @@ class FindTrips extends Component{
         this.state = {
             tripData: [],
             start:[],
-            end:[]
+            end:[],
+            rider:{}
         }
         this.getTrips = this.getTrips.bind(this);
+    }
+
+    joinTrip(trip,rider){
+        trip.riders.push(rider);
+        trip.max_riders--;
+        console.log(rider);
+        API.saveTrip(trip)
+        .then(result => console.log(result));
     }
 
    getTrips(event) {
@@ -67,7 +76,7 @@ class FindTrips extends Component{
                     
                     })
                 
-                this.setState({tripData:results});
+                this.setState({tripData:results,rider:rider});
                 });
             })
            });
@@ -86,7 +95,7 @@ class FindTrips extends Component{
         <Button label="Filter Trips" onclick={() => this.setState({tripData:this.filterTrips(this.state.tripData,25)})} /> 
         {this.state.tripData.map((trip, index)=>{
             return(
-                <Trip trip={trip} key={index} {...this.props} />
+                <Trip trip={trip} key={index} joinTrip={() => this.joinTrip(trip,this.state.rider.id)} {...this.props} />
             );
         })}
         

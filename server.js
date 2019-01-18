@@ -148,7 +148,7 @@ app.get("/api/user_name/:user_name", /*authCheck,*/function(req,res){
 });
 
 app.get("/api/trips", /*authCheck,*/ function(req,res){
-    db.Trip.find({}).populate('driver').populate('riders')
+    db.Trip.find({}).populate('driver').populate({path:'riders',populate:'rider'})
     .then(trips => res.json(trips))
     .catch(err => res.json(err));
 });
@@ -194,7 +194,7 @@ app.post("/api/trips", /*authCheck,*/ function(req,res){
     {
         if(trip.riders.length<trip.max_riders){
 
-            db.Trip.findOneAndUpdate({_id: trip},{upsert: true})
+            db.Trip.findOneAndUpdate({_id: trip._id},trip)
             .then(trip => res.json(trip))
             .catch(err => res.json(err));
         }

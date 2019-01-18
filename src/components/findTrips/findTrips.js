@@ -83,7 +83,7 @@ class FindTrips extends Component{
         }
         
         filterTrips(trips,distance){
-            return trips.filter(trip => trip.stops[0].startDistance && trip.stops[trip.stops.length - 1].endDistance < distance)
+            return trips.filter(trip => trip.stops[0].startDistance <distance && trip.stops[trip.stops.length - 1].endDistance < distance && trip.max_riders - trip.riders.length > 0 )
         }
         
 

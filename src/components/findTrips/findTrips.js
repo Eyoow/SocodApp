@@ -24,7 +24,7 @@ class FindTrips extends Component{
 
     joinTrip(trip,rider){
         trip.riders.push(rider);
-        trip.max_riders--;
+        
         console.log(rider);
         API.saveTrip(trip)
         .then(result => console.log(result));

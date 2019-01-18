@@ -15,7 +15,7 @@ const Trip = props =>{
             console.log(rider);
             return <li key={index}>{rider.user_name}</li>;
             })}</ul></div>
-            <div className="open-seats">Open Seats: {props.trip.max_riders}</div>
+            <div className="open-seats">Open Seats: {props.trip.max_riders-props.trip.riders.length}</div>
             <Button label = "Join Trip" onclick={props.joinTrip} />
             <div className="stops">
             <ul>

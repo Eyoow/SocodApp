@@ -192,7 +192,7 @@ app.post("/api/trips", /*authCheck,*/ function(req,res){
     
    if(trip._id)
     {
-        if(trip.riders.length<trip.max_riders){
+        if(trip.riders.length<=trip.max_riders){
 
             db.Trip.findOneAndUpdate({_id: trip._id},trip)
             .then(trip => res.json(trip))
@@ -200,7 +200,7 @@ app.post("/api/trips", /*authCheck,*/ function(req,res){
         }
 
         else{
-            return res.text("ride is full")
+            return res.send("ride is full")
         }
     }
     else{

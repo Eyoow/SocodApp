@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import Form from "../form";
 import fields from "./fields";
 import Trip from "../trip";
+import Button from "../button";
 import API from "../../utils/API";
 import getDistance from "../../utils/getDistance";
 import "./findTrips.css";
@@ -71,14 +72,18 @@ class FindTrips extends Component{
             })
            });
         }
-
+        
+        filterTrips(trips,distance){
+            return trips.filter(trip => trip.stops[0].startDistance && trip.stops[trip.stops.length - 1].endDistance < distance)
+        }
+        
 
     render(){
     
     return(
         <div>
         <Form {...this.props} name = "tripFinder" fields = {fields} buttonLabel="Find Trips" onSubmit={this.getTrips} />
-        
+        <Button label="Filter Trips" onclick={() => this.setState({tripData:this.filterTrips(this.state.tripData,25)})} /> 
         {this.state.tripData.map((trip, index)=>{
             return(
                 <Trip trip={trip} key={index} {...this.props} />

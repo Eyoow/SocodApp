@@ -4,12 +4,16 @@ var Schema = mongoose.Schema;
 var MessageSchema = new Schema({
     
     sender:{
-        type: Schema.Types.ObjectId, 
+        type: String, 
         ref: "User"
     }, 
     recipient:{
-        type: Schema.Types.ObjectId, 
+        type: String, 
         ref: "User"
+    },
+    subject:{
+        type: String,
+        required: true
     },
     body:{
         type: String,

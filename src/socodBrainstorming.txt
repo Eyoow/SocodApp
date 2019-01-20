@@ -1,0 +1,1 @@
+Menu should also be content agnostic: map buttons

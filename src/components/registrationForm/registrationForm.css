@@ -1,0 +1,9 @@
+
+
+/* register form style  */
+#register{
+    display: grid;
+    grid-template-rows: 31px;
+    grid-row-gap: 31px;
+}
+

@@ -1,0 +1,23 @@
+#dropButton{
+    display: hidden;
+}
+#menu .btn{
+    border-radius: 0;
+    border: none;
+}
+
+#menu{
+    width: 100%;
+    background-color: #53c01f;
+}
+
+@media only screen and (max-width:768px){
+    #menu .btn{
+        display: block;
+        width: 33vw;
+        float:left;
+    }
+   #menu{
+        height: 100px;
+    }
+}

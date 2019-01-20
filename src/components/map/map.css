@@ -1,0 +1,47 @@
+#map,#right-panel{
+    height:100vh;
+}
+#map{
+    margin-right:400px;
+}
+#right-panel{
+    width:350px;
+    float: right;
+}
+#map input,label,select{
+    border-radius: 5px;
+}
+
+#map select{
+    height: 31px;
+    margin-left: 10px;
+    padding-left: 10px;
+}
+
+#map .btn{
+    margin-left:10px;
+    padding-left:10px;
+    width: 100px;
+}
+
+#map .btn.right{
+    float: right;
+    margin-right:-10px;
+    outline: none;
+}
+
+@media only screen and (max-width: 768px){
+    
+    #map{
+       width: 100vw;
+       height: 150vh;
+    }
+    #right-panel{
+        display:block;
+    }
+    #floating-panel{
+        margin-top: 50px;
+    }
+
+   
+}

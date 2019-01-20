@@ -2,6 +2,10 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
+    _id:{
+        type:String,
+        required:true
+    },
     user_name:{
         type: String, 
         required: true
@@ -17,24 +21,22 @@ var UserSchema = new Schema({
     },
     zipcode:{
         type: Number, 
-        required: true
+        required: true,
+        max:100000
     },
 
     birthdate:{
         type: String, 
-        required: true
+        required: true,
+        
     },
     email:{
         type: String, 
         required: true
     },
-    password:{
-        type: String, 
-        required: true
-    },
-    picture:{
-        type: String, 
-        required: true
+    image:{
+       type: String, 
+       required: true
     },
     isrider:{
         type: Boolean, 
@@ -43,12 +45,13 @@ var UserSchema = new Schema({
 
     isdriver:{
         type: Boolean, 
-        default: false
+        default: false,
     },
 
     gender:{
         type: String,
-        required: true
+        required: true,
+        enum:["M","F"]
     }
 });
 

@@ -24,6 +24,7 @@ AWS.config.update({
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 });
 
+console.log(process.env.AWS_ACCESS_KEY_ID);
 // configure AWS to work with promises
 AWS.config.setPromisesDependency(bluebird);
 

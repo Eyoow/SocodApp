@@ -23,7 +23,10 @@ const handleAuthentication = (nextState, replace) => {
 }
 
 export const makeMainRoutes = () => {
- 
+  console.log(process.env.AWS_SECRET_ACCESS_KEY);
+  console.log(process.env.AWS_SECRET_ACCESS_KEY);
+  console.log(process.env.AWS_ACCESS_KEY_ID);
+  console.log(process.env.AWS_SECRET_ACCESS_KEY);
   return (
     <Router history={history} component={App}>
       <div>

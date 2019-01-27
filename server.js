@@ -17,10 +17,7 @@ const fs = require('fs');
 const fileType = require('file-type');
 const bluebird = require('bluebird');
 const multiparty = require('multiparty');
-console.log(process.env.AWS_SECRET_ACCESS_KEY);
-console.log(process.env.AWS_SECRET_ACCESS_KEY);
-console.log(process.env.AWS_ACCESS_KEY_ID);
-console.log(process.env.AWS_SECRET_ACCESS_KEY);
+
 
 // configure the keys for accessing AWS
 AWS.config.update({
@@ -134,6 +131,10 @@ else{
 }
 
 app.get("/api/user/:id", /*authCheck,*/ function(req,res){
+    console.log(process.env.AWS_SECRET_ACCESS_KEY);
+console.log(process.env.AWS_SECRET_ACCESS_KEY);
+console.log(process.env.AWS_ACCESS_KEY_ID);
+console.log(process.env.AWS_SECRET_ACCESS_KEY);
     db.User.findOne({_id: req.params.id})
     .then(user => res.json(user))
     .catch(err => res.json(err));

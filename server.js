@@ -17,6 +17,7 @@ const fs = require('fs');
 const fileType = require('file-type');
 const bluebird = require('bluebird');
 const multiparty = require('multiparty');
+console.log(process.env);
 
 // configure the keys for accessing AWS
 AWS.config.update({
@@ -24,7 +25,6 @@ AWS.config.update({
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 });
 
-console.log(process.env.AWS_ACCESS_KEY_ID);
 // configure AWS to work with promises
 AWS.config.setPromisesDependency(bluebird);
 

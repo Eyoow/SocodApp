@@ -13,11 +13,13 @@ var TripSchema = new Schema({
     },
     start:{
         type:String,
-        required: true
+        required: true,
+        minlength: 1
     },
     end:{
         type:String,
-        required:true
+        required:true,
+        minlength: 1
     },
     // price:{
     //     type: Number, 

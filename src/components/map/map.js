@@ -183,7 +183,16 @@ class Map extends React.Component {
       trip.max_riders = parseInt(seats);
       //make sure there is some notification that trip is saved
       API.saveTrip(trip)
-      .then(result => console.log(result));
+      .then(result => {
+        console.log(result);
+        if (result.data.errors)
+        {
+          alert(result.data.message);
+        }
+        else{
+         alert("Trip Saved!");
+        }
+      })
     }
 
     render() {

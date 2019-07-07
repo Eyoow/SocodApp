@@ -15,7 +15,7 @@ class Mailbox extends Component {
         this.props.auth.getProfile();
         let id = localStorage.getItem("profile");
         API.getMessages(id).then(results => {
-            console.log(results.data);
+            console.log(results);
             let messages = [];
             results.data.forEach(message =>
                 messages.push(message));

@@ -8,7 +8,8 @@ var TripSchema = new Schema({
         required: true
     }],
     driver:{
-        type: String, 
+        type: String,
+        required:true,
         ref: "User"
     },
     start:{

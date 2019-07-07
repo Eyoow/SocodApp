@@ -8,7 +8,7 @@ const Received = props => {
         <div id="received">
         
         {props.messages.map((message,index) => {
-            alert(message.subject);
+          
             return(
                 <Message message={message} key={index} collapse={false} />
             );

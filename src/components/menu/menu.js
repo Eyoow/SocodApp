@@ -13,6 +13,7 @@ const Menu = props => {
                     <Button label ="Home" onclick={() => props.history.replace("/")} />
                     <Button label ="Sign Up" onclick={() =>props.history.replace("/signup")} />
                     <Button label = "Profile" onclick={() => props.history.replace("/profile")} />
+                    <Button label="Messages" onclick={()=>props.history.replace("/messages")} />
                     <Button label ="Find Trips" onclick ={() => props.history.replace("/findTrips")} />
                     <Button label ="Plan Trip" onclick={() => props.history.replace("/map")} />
                     <Button label="Our Team" onclick={()=>props.history.replace("/team")} />

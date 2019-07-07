@@ -2,11 +2,14 @@
     height:100vh;
 }
 #map{
-    margin-right:400px;
+    width:70vw;
+    float: left;
 }
 #right-panel{
-    width:350px;
+    width:25vw;
+    margin-right:2vw;
     float: right;
+        
 }
 #map input,label,select{
     border-radius: 5px;

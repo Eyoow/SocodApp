@@ -24,7 +24,8 @@ class FindTrips extends Component{
 
     joinTrip(trip,rider){
         trip.riders.push(rider);
-        
+        //need to prevent adding if no open seats
+        //alert saying you joined
         console.log(rider);
         API.saveTrip(trip)
         .then(result => console.log(result));

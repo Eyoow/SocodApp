@@ -38,10 +38,10 @@ class Mailbox extends Component {
                         <div className = "message-header">
                         <ul>
                             <li>
-                                From: {message.sender.name}
+                                From: <a href={`./user/${message.sender.user_name}`}>{message.sender.user_name}</a>
                             </li>
                             <li>
-                                To: {message.recipient.name}
+                                To: <a href={`./user/${message.recipient.user_name}`}>{message.recipient.user_name}</a>
                             </li>
                             <li>
                                 Subject: {message.subject}

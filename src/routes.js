@@ -85,7 +85,6 @@ export const makeMainRoutes = () => {
           return <MapContainer {...props} auth={auth}/>
           }
         } />
-        
       </div>
     </Router>
   );

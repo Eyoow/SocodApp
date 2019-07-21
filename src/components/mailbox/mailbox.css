@@ -1,0 +1,7 @@
+.message-header li {
+    display:inline-block;    
+   }
+
+.message-header:hover{
+    background: lightgray;
+}

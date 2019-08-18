@@ -16,7 +16,7 @@ class MapWithDirections extends Component{
     constructor(props)
     {
       super(props);
-      this.googleMapURL = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_API_KEY}&v=3.exp&libraries=geometry,drawing,places`;
+      this.googleMapURL = `https://maps.googleapis.com/maps/api/js?key=AIzaSyCXyQHcYT8jw81fSfOmn5cjTAWUPfEM0wQ&v=3.exp&libraries=geometry,drawing,places`;
       this.loadingElement = `<div style={{ height: "100%" }} />`;
       this.containerElement= `<div style={{ height: "400px" }} />`;
       this.mapElement = `<div style={{ height: "100%" }} />`;

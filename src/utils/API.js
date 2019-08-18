@@ -26,6 +26,9 @@ export default {
   sendMessage: (message) =>{
     return instance.post(`${apiURL}/api/messages`, message);
   },
+  updateMessage: (message) =>{
+    return instance.post(`${apiURL}/api/messages`, message);
+  },
   // saves or updates trip
   saveTrip: (trip) =>{
     console.log(trip);

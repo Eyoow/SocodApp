@@ -172,7 +172,8 @@ app.get("/api/messages/:id", /*authCheck,*/ function(req,res){
 });
 
 app.post("/api/messages", /*authCheck,*/ function(req,res){
-    db.Message.create(req.body)
+    let message = req.body;
+    db.Message.findOneAndUpdate({_id:message.id},message,{upsert: true, returnOriginal: false, runValidators: true})
     .then(messages => res.json(messages))
     .catch(err => res.json(err));
 });

@@ -23,6 +23,12 @@ class Mailbox extends Component {
         }).catch(err=> console.log(err));
     }   
 
+    showMessage = (message) =>{
+            
+            message.read = true;
+            API.updateMessage(message);
+    }
+    
     render()
     {
         let messages = this.state.messages;
@@ -35,7 +41,7 @@ class Mailbox extends Component {
                 return(
                     <div className= "message-container" key={message._id}>
                         
-                        <div className = "message-header">
+                        <div className = "message-header" onClick = {()=>this.showMessage(message)}>
                         <ul>
                             <li>
                                 From: <a href={`./user/${message.sender.user_name}`}>{message.sender.user_name}</a>
@@ -48,10 +54,11 @@ class Mailbox extends Component {
                             </li>
                         </ul>
                         </div>
-                
+                        
                         <div className = "message-body">
-                            <p>{message.body}</p>            
+                        {message.read === true ?(<p>{message.body}</p>):(<p></p>)}           
                         </div>
+                        
 
                     </div> 
                 );

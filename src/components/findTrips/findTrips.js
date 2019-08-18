@@ -53,10 +53,10 @@ class FindTrips extends Component{
             // }
          
         
-        Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${rider.start_address}&key=${process.env.REACT_APP_API_KEY}`)
+        Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${rider.start_address}&key=AIzaSyCXyQHcYT8jw81fSfOmn5cjTAWUPfEM0wQ`)
         .then(query1 => {
             rider.startLoc = query1.data.results[0].geometry.location;
-            Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${rider.end_address}&key=${process.env.REACT_APP_API_KEY}`)
+            Axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${rider.end_address}&key=AIzaSyCXyQHcYT8jw81fSfOmn5cjTAWUPfEM0wQ`)
             .then(query2 => {
             
             rider.endLoc = query2.data.results[0].geometry.location;
